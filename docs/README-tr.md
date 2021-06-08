@@ -42,7 +42,7 @@
 
 ---
 
-Bugün ie başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
+Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
@@ -53,11 +53,11 @@ You can also add waivers on the days you did not work.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
-## How to install TTL
+## Time TO Leave'i Nasıl Yüklerim
 
 Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
-## How to build and contribute to TTL
+## Time To Leave'e Nasıl Katkıda Bulunabilirim
 
 If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
 You can also refer to our [development guide](DEVELOPMENT.md) for more information.
