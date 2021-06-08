@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="assets/timetoleave.png" alt="Time to Leave Logo">
+    <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın ve yaşamaya başlayın </p>
    
