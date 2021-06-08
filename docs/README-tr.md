@@ -53,16 +53,16 @@ You can also add waivers on the days you did not work.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
-## Time TO Leave'i Nasıl Yüklerim
+## TTL'i Nasıl Yüklerim
 
 Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
 
-## Time To Leave'e Nasıl Katkıda Bulunabilirim
+## TTL'e Nasıl Katkıda Bulunabilirim
 
 If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
 You can also refer to our [development guide](DEVELOPMENT.md) for more information.
 
-## Get in touch!
+## İrtibatta Kalalım
 
 Join our [discord channel](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
 
