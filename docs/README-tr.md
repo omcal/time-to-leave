@@ -41,8 +41,8 @@ Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz ve
 
 ## TTL'e Nasıl Katkıda Bulunabilirim
 
-Eğer katkıda bulunmak ve bize yardım etmek istiyorsan, [contributing-rehberi](CONTRIBUTING.md) okuyabilirsiniz.
-Daha fazla bilgi için [Geliştirme Rehberine](DEVELOPMENT.md) başvurabilirsiniz.
+Eğer katkıda bulunmak ve bize yardım etmek istiyorsan, [Katkı-rehberi](../CONTRIBUTING.md) okuyabilirsiniz.
+Daha fazla bilgi için [Geliştirme Rehberine](../DEVELOPMENT.md) başvurabilirsiniz.
 
 ## İrtibatta Kalalım
 
