@@ -52,7 +52,6 @@ Yeni gelen özellikleri tartışmak ve daha fazlası için [discord kanalımıza
 
 Simgeler [freepik](https://www.flaticon.com/authors/freepik) tarafından [www.flaticon.com](https://www.flaticon.com)'da yapıldı.
 
-Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
 
 Orjinal Süre Ölçer simgesinin renkli varyasyonları ve formatları [lucy-g](https://icon-icons.com/icon/timer/121243)'dan modifiye edildi.
 
