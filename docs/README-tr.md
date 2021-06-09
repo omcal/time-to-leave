@@ -46,7 +46,7 @@ Daha fazla bilgi için [Geliştirme Rehberine](../DEVELOPMENT.md) başvurabilirs
 
 ## İrtibatta Kalalım
 
-Yeni gelen özellikleri tartışmak ve daha fazlası için [discord kanalımıza](https://discord.gg/P3KkEF5) katılın.
+Yeni gelecek özellikleri tartışmak ve daha fazlası için [discord kanalımıza](https://discord.gg/P3KkEF5) katılın.
 
 ## Katkıda Bulunanlar
 
