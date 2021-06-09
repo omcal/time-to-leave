@@ -37,18 +37,16 @@ You can also add waivers on the days you did not work.
 
 ## TTL'i Nasıl Yüklerim
 
-Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu  [buradan](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5) indirebilirsiniz.
+Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu [buradan](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5) indirebilirsiniz.
 
 ## TTL'e Nasıl Katkıda Bulunabilirim
-
 
 Eğer katkıda bulunmak ve bize yardım etmek istiyorsan, [contributing-rehberi](CONTRIBUTING.md) okuyabilirsiniz.
 Daha fazla bilgi için [Geliştirme Rehberine](DEVELOPMENT.md) başvurabilirsiniz.
 
-
 ## İrtibatta Kalalım
 
-Yeni gelen özellikleri tartışmak ve daha fazlası için  [discord kanalımıza](https://discord.gg/P3KkEF5) katılın.
+Yeni gelen özellikleri tartışmak ve daha fazlası için [discord kanalımıza](https://discord.gg/P3KkEF5) katılın.
 
 ## Katkıda Bulunanlar
 
@@ -56,7 +54,7 @@ Simgeler [freepik](https://www.flaticon.com/authors/freepik) tarafından [www.fl
 
 Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
 
-Orjinal  Süre Ölçer simgesinin renkli varyasyonları ve formatları  [lucy-g](https://icon-icons.com/icon/timer/121243)'dan modifiye edildi.
+Orjinal Süre Ölçer simgesinin renkli varyasyonları ve formatları [lucy-g](https://icon-icons.com/icon/timer/121243)'dan modifiye edildi.
 
 Hasta Simgesi için [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
 
