@@ -3,7 +3,7 @@
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
    
-   [Homepage](https://timetoleave.app/)
+   [Ana Sayfa](https://timetoleave.app/)
 
   <br/>
 
@@ -31,7 +31,7 @@ Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği
 Tercihleriniz, çalışma günlerinizi, günde kaç saat çalıştığınızı ve bildirim isteyip istemediğinizi belirterek kontrol edebilirsiniz.
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 
-You can also add waivers on the days you did not work.
+Aynı zamanda izinli olduğunuz günleri de çalışmadığınız günlere ekleyebilirsiniz.
 
 ![time-to-leave-waiver](https://user-images.githubusercontent.com/3754225/94762058-4e79a380-03c4-11eb-8f28-1c480dbf8b5c.png)
 
