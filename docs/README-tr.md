@@ -1,8 +1,7 @@
-
 <div align="center">
     <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
 
-  <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın ve yaşamaya kaldığınız yerden devam edin. </p>
+  <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
    
    [Homepage](https://timetoleave.app/)
 
@@ -25,7 +24,7 @@
 
 ---
 
-Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
+Bugün işe başladığınız saati kaydedin,program sizin için -öğle yemeği için harcadığınız zamanı da göz önünde bulundurarak- ofisten ne zaman ayrılmanız gerektiğini hesaplayacaktır.Zamanı geldiğinde ise sizi bilgilendirecektir.
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
@@ -38,23 +37,27 @@ You can also add waivers on the days you did not work.
 
 ## TTL'i Nasıl Yüklerim
 
-Time to Leave works on MacOS, Windows and Linux, and you can download the desired version from [the latest release](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5).
+Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu  [buradan](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5) indirebilirsiniz.
 
 ## TTL'e Nasıl Katkıda Bulunabilirim
 
-If you want to help, read our [contributing](CONTRIBUTING.md) guidelines.
-You can also refer to our [development guide](DEVELOPMENT.md) for more information.
+
+Eğer katkıda bulunmak ve bize yardım etmek istiyorsan, [contributing-rehberi](CONTRIBUTING.md) okuyabilirsiniz.
+Daha fazla bilgi için [Geliştirme Rehberine](DEVELOPMENT.md) başvurabilirsiniz.
+
 
 ## İrtibatta Kalalım
 
-Join our [discord channel](https://discord.gg/P3KkEF5) to discuss upcoming features and more.
+Yeni gelen özellikleri tartışmak ve daha fazlası için  [discord kanalımıza](https://discord.gg/P3KkEF5) katılın.
 
-## Credits
+## Katkıda Bulunanlar
 
-Icons made by [freepik](https://www.flaticon.com/authors/freepik) from [www.flaticon.com](https://www.flaticon.com).
+Simgeler [freepik](https://www.flaticon.com/authors/freepik) tarafından [www.flaticon.com](https://www.flaticon.com)'da yapıldı.
 
 Original Timer icon by [lucy-g](https://icon-icons.com/icon/timer/121243), colored variations and formats modified from it.
 
-Sick icon by [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+Orjinal  Süre Ölçer simgesinin renkli varyasyonları ve formatları  [lucy-g](https://icon-icons.com/icon/timer/121243)'dan modifiye edildi.
 
-View Switch icon made by [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [www.flaticon.com](https://www.flaticon.com).
+Hasta Simgesi için [SVG Repo](https://www.svgrepo.com/svg/271898/sick).
+
+'View Switch' simgesi [www.flaticon.com](https://www.flaticon.com)'da [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) tarafından yapıldı.
