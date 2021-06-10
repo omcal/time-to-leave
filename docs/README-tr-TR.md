@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="../assets/timetoleave.png" alt="Time to Leave Logo">
+    <img src="../assets/timetoleave.png" alt="Time to Leave Simgesi">
 
   <p>Çalışma saatlerinizi kaydedin ve ofisten ayrılma zamanınız geldiğinde bildirim alın. Yaşamaya kaldığınız yerden devam edin. </p>
    
@@ -8,14 +8,14 @@
   <br/>
 
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
-<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
-<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
+<img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Toplam İndirilme Sayısı">
+<a href="https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="En Son Sürümü"></a>
 <img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
-<a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
+<a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="En Son Sürümü"></a>
 
    <br/>
 
-  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Screenshot">
+  <img src="https://user-images.githubusercontent.com/3754225/94519528-4e549900-0248-11eb-8872-b6fb2d47f43c.jpg" alt="Time to Leave Ekran Görüntüsü">
 
   <br/>
 
