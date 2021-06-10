@@ -37,7 +37,7 @@ Aynı zamanda izinli olduğunuz günleri de çalışmadığınız günlere ekley
 
 ## TTL'i Nasıl Yüklerim
 
-Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu [buradan](https://github.com/thamara/time-to-leave/releases/tag/v.1.5.5) indirebilirsiniz.
+Time to Leave Macos, Windows ve Linux versiyonu bulunmaktadır. İstediğiniz versiyonu [buradan](https://github.com/thamara/time-to-leave/releases/latest) indirebilirsiniz.
 
 ## TTL'e Nasıl Katkıda Bulunabilirim
 
