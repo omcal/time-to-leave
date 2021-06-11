@@ -68,7 +68,6 @@ Translation: Time to Leave is now available in Tamil (ta)!
 Translation: Time to Leave is now available in Thai (th-TH)!
 Translation: Time to Leave is now available in Traditional Chinese (zh-TW)!
 
-
 -   Accessibility: [#447] Including focus ring/outline for inputs in the App
 -   Enhancement [#645]: No confirmation popup when removing entry pair
 -   Enhancement [#661]: Add missing translations to Dutch
@@ -189,7 +188,6 @@ tilenmiklavic
 tupaschoal
 tuxinaut
 virginiarcruz
-
 
 -   06b
 -   1-byte-man
