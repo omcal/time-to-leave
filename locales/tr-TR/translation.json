@@ -37,7 +37,7 @@
         "wednesday": "Çarşamba"
     },
     "$FlexibleDayCalendar": {
-        "current-day": "Bugüne Güne Git",
+        "current-day": "Bugüne Git",
         "day-total": "Gün Toplamı",
         "entry": "Girdi",
         "entry-removal-confirmation": "Son girdi satırını kaldırmak istediğinize emin misiniz?",
