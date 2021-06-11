@@ -37,7 +37,7 @@
         "wednesday": "Çarşamba"
     },
     "$FlexibleDayCalendar": {
-        "current-day": "Geçerli Güne Git",
+        "current-day": "Bugüne Güne Git",
         "day-total": "Gün Toplamı",
         "entry": "Girdi",
         "entry-removal-confirmation": "Son girdi satırını kaldırmak istediğinize emin misiniz?",
@@ -52,7 +52,7 @@
     },
     "$FlexibleMonthCalendar": {
         "add-waiver-day": "Bugün için izili gün ekle",
-        "current-month": "Geçerli Aya Git",
+        "current-month": "Şimdiki Aya Git",
         "day": "Gün",
         "entry-removal-confirmation": "Günden son iki girdiyi kaldırmak istediğinizden emin misiniz?",
         "last-day-balance": "Son Gün Bilanço için kullanıldı.",
