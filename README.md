@@ -11,6 +11,7 @@
 <a href="docs/README-mr.md"><img src="https://img.shields.io/badge/mr-मराठी-purple" alt="हे कागदजत्र देखील उपलब्ध आहे मराठी तसेच उपलब्ध आहे"></a>
 <a href="docs/README-de-DE.md"><img src="https://img.shields.io/badge/de--DE-Deutsch-purple" alt="Dieses Dokument ist auch verfügbar in Deutsch"></a>
 <a href="docs/README-hi.md"><img src="https://img.shields.io/badge/hi-Hindi-purple" alt="यह दस्तावेज़ Hindi में भी उपलब्ध है"></a>
+<a href="docs/README-gu.md"><img src="https://img.shields.io/badge/hi-gujarati-purple" alt="આ દસ્તાવેજ ગુજરાતીમાં પણ ઉપલબ્ધ છે"></a>
 <a href="docs/README-zh-TW.md"><img src="https://img.shields.io/badge/zh--TW-繁體中文-purple" alt="此文檔亦適用於繁體中文"></a>
 <a href="docs/README-pl.md"><img src="https://img.shields.io/badge/pl-Polski-purple" alt="Przeczytaj ten dokument w języku polskim"></a>
 <a href="docs/README-ja.md"><img src="https://img.shields.io/badge/ja-日本語-purple" alt="このドキュメントは日本語でもご覧になれます。"></a>
@@ -28,7 +29,6 @@
 <img src="https://img.shields.io/badge/platforms-Windows%20%7C%20MacOS%20%7C%20Linux-green" alt="Platform">
 <img src="https://img.shields.io/github/downloads/thamara/time-to-leave/total" alt="Downloads in Total">
 <a href="https://github.com/thamara/time-to-leave/releases/latest"><img src="https://img.shields.io/github/v/release/thamara/time-to-leave" alt="Latest Release"></a>
-<img src="https://img.shields.io/github/workflow/status/thamara/time-to-leave/Code%20Coverage" alt="Build">
 <a href="http://makeapullrequest.com/"><img src="https://img.shields.io/badge/PRs-welcome-purple" alt="Latest Release"></a>
 
    <br/>
@@ -46,7 +46,7 @@ Log the time you started working today, and the program will compute what time y
 
 ![time-to-leave-notification](https://user-images.githubusercontent.com/3754225/94519526-4dbc0280-0248-11eb-9738-ffae936cfa4a.jpg)
 
-You can control the preferences, stating your working days, how many hours you work a day and if you want notification or not.
+You can control the preferences, stating your working days, how many hours you work a day and if you want to receive a notification or not.
 
 ![time-to-leave-settings](https://user-images.githubusercontent.com/3754225/94519531-4eed2f80-0248-11eb-9303-78f9abe69201.jpg)
 

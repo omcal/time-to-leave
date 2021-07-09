@@ -5,8 +5,10 @@
 -   Enhancement [#645]: No confirmation popup when removing entry pair
 -   Enhancement [#661]: Add missing translations to Dutch
 -   Enhancement [#665]: Update export datebase name format to include a timestamp
+-   Enhancement [#691]: Adding a dismiss button on the notification, so you won't be bothered again on a current day
 -   Fix [#650]: Month balance is incorrect
 -   Fix [#660]: Hours field on waiver manager is not validated
+-   Translation: Time to Leave is now available in Gujarati (gu)!
 -   Translation: Time to Leave is now available in Turkish (tr-TR)
 
 <!--- End changes - Do not remove -->
@@ -15,13 +17,16 @@ Who built 2.0.2:
 
 <!--- Begin users - Do not remove -->
 
+-   JulienZD
 -   LauraToddCodes
 -   Semvrij
 -   adarshnanwani
 -   anujjoshi63
 -   mayankmohak
+-   nikkhil31
 -   omerisildak
 -   thamara
+-   thefyrewire
 -   tupaschoal
 
 <!--- End users - Do not remove -->
