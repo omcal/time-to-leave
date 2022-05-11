@@ -1,39 +1,22 @@
 'use strict';
 
-const { ipcRenderer } = require('electron');
-
-const { getUserPreferences } = require('../js/user-preferences.js');
-const { applyTheme } = require('../js/themes.js');
-const { bindDevToolsShortcut } = require('../js/window-aux.js');
-const i18n = require('../src/configs/i18next.config');
-const config = require('../src/configs/app.config');
-
-const $ = require('jquery');
-const jqueryI18next = require('jquery-i18next');
+import { applyTheme } from '../renderer/themes.js';
+import { translatePage } from '../renderer/i18n-translator.js';
 
 // Global values for preferences page
-let usersStyles = getUserPreferences();
-let preferences = usersStyles;
+let usersStyles;
+let preferences;
 
-function translatePage(language)
+function populateLanguages()
 {
-    $('html').attr('lang', language);
-    $('body').localize();
-    $('title').localize();
-    $('label').localize();
-    $('div').localize();
-}
-
-function populateLanguages(i18n)
-{
-    let languageOpts = $('#language');
+    const languageOpts = $('#language');
     languageOpts.empty();
-    $.each(config.getLanguagesCodes(), function()
+    $.each(window.mainApi.getLanguageMap(), (key, value) =>
     {
         languageOpts.append(
             $('<option />')
-                .val(this)
-                .text(config.getLanguageName(this))
+                .val(key)
+                .text(value)
         );
     });
     // Select current display language
@@ -42,71 +25,65 @@ function populateLanguages(i18n)
     {
         $('#language').val(usersStyles['language']);
     }
-    $('#language').on('change', function()
-    {
-        preferences['language'] = this.value;
-        i18n.changeLanguage(this.value);
-        translatePage(this.value);
-        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
-    });
 }
 
 function listenerLanguage()
 {
     $('#language').on('change', function()
     {
-        console.log('PREFERENCE_SAVE_DATA_NEEDED');
         preferences['language'] = this.value;
-        i18n.changeLanguage(this.value);
-        translatePage(this.value);
-        populateLanguages(i18n);
-        ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+        window.mainApi.changeLanguagePromise(this.value).then((languageData) =>
+        {
+            translatePage(this.value, languageData);
+            window.mainApi.notifyNewPreferences(preferences);
+        });
     });
 }
 
-i18n.on('loaded', () =>
+function setupLanguages()
 {
-    i18n.changeLanguage(usersStyles['language']);
-    populateLanguages(i18n);
+    populateLanguages();
     listenerLanguage();
-    i18n.off('loadded');
-    i18n.off('languageChanged');
-
-    jqueryI18next.init(i18n, $);
-    translatePage(i18n.language);
-});
+    window.mainApi.getLanguageDataPromise().then(languageData =>
+    {
+        translatePage(usersStyles['language'], languageData.data);
+    });
+}
 
 function refreshContent()
 {
-    usersStyles = getUserPreferences();
-}
-
-function updateUserPreferences()
-{
-    ipcRenderer.send('PREFERENCE_SAVE_DATA_NEEDED', preferences);
+    return new Promise((resolve) =>
+    {
+        window.mainApi.getUserPreferencesPromise().then(userPreferences =>
+        {
+            usersStyles = userPreferences;
+            preferences = usersStyles;
+            resolve();
+        });
+    });
 }
 
 function changeValue(type, newVal)
 {
     preferences[type] = newVal;
-    updateUserPreferences();
+    window.mainApi.notifyNewPreferences(preferences);
 }
 
 function renderPreferencesWindow()
 {
     // Theme-handling should be towards the top. Applies theme early so it's more natural.
-    let theme = 'theme';
+    const theme = 'theme';
 
     /* istanbul ignore else */
     if (theme in usersStyles)
     {
         $('#' + theme).val(usersStyles[theme]);
     }
-    let selectedThemeOption = $('#' + theme)
+    const selectedThemeOption = $('#' + theme)
         .children('option:selected')
         .val();
     preferences[theme] = selectedThemeOption;
-    $('html').attr('data-theme', selectedThemeOption);
+    applyTheme(selectedThemeOption);
 
     /* istanbul ignore else */
     if ('view' in usersStyles)
@@ -146,8 +123,8 @@ function renderPreferencesWindow()
 
     $('input').each(function()
     {
-        let input = $(this);
-        let name = input.attr('name');
+        const input = $(this);
+        const name = input.attr('name');
         /* istanbul ignore else */
         if (input.attr('type') === 'checkbox')
         {
@@ -205,16 +182,20 @@ function renderPreferencesWindow()
     {
         notificationsInterval.prop('disabled', !repetition.is(':checked'));
     });
-
-    bindDevToolsShortcut(window);
 }
 /* istanbul ignore next */
 $(() =>
 {
-    renderPreferencesWindow();
+    window.mainApi.getUserPreferencesPromise().then((userPreferences) =>
+    {
+        usersStyles = userPreferences;
+        preferences = usersStyles;
+        renderPreferencesWindow();
+        setupLanguages();
+    });
 });
 
-module.exports = {
+export {
     refreshContent,
     populateLanguages,
     listenerLanguage,

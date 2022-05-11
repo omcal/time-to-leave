@@ -5,8 +5,7 @@
         "month-balance-title": "本月結餘會計算到今天為止，正結餘代表你今天（或今個月餘下的日子裡）有額外的小時數不用工作。",
         "overall-balance": "總體結餘",
         "overall-balance-title": "總體結餘直到月尾或當前日子",
-        "switch-view": "切換視角",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "切換視角"
     },
     "$DateUtil": {
         "april": "四月",
@@ -14,27 +13,20 @@
         "december": "十二月",
         "february": "二月",
         "fri": "五",
-        "friday": "星期五",
         "january": "一月",
         "july": "七月",
         "june": "六月",
         "march": "三月",
         "may": "五月",
         "mon": "一",
-        "monday": "星期一",
         "november": "十一月",
         "october": "十月",
         "sat": "六",
-        "saturday": "星期六",
         "september": "九月",
         "sun": "日",
-        "sunday": "星期日",
         "thu": "四",
-        "thursday": "星期四",
         "tue": "二",
-        "tuesday": "星期二",
-        "wed": "三",
-        "wednesday": "星期三"
+        "wed": "三"
     },
     "$FlexibleDayCalendar": {
         "current-day": "回到當前日子",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "別忘了打卡！",
         "time-to-leave": "你還好嗎？我想現在是時候離開了。",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "今天關功能"
     },
     "$Preferences": {
         "allowRecurringNotifications": "允許定期通知",
@@ -141,8 +133,8 @@
         "hideNonWorkingDay": "隱藏非工作日（月份視角）",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "小時每日",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "啓用休息時間的預填",
+        "breakTimeInterval": "休息間隔",
         "language": "語言",
         "light": "淺色",
         "minimizeToTray": "當按下最小化按鈕時將程式最小化到任務欄",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "導入已選擇假日",
         "start-date": "開始日期",
         "state": "狀態：",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - 工作日豁免管理員",
         "to": "至",
         "waive": "豁免",
@@ -210,5 +201,8 @@
         "waiver-reason": "豁免原因",
         "year": "年",
         "yes": "是"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"請以有效的 24 小時格式輸入時間，從 00:00 到 23:59\")"
     }
 }

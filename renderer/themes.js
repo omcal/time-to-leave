@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: this is duplicated in preferences.html.
+// Please concentrate it in a single place, probably a JSON.
 const themeOptions = ['system-default', 'light', 'dark', 'cadent-star'];
 
 /**
@@ -34,7 +36,7 @@ function applyTheme(theme)
     return true;
 }
 
-module.exports = {
+export {
     isValidTheme,
     applyTheme
 };

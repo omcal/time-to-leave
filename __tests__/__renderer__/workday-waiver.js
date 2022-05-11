@@ -25,8 +25,17 @@ const {
     clearHolidayTable,
     clearWaiverList,
     loadHolidaysTable,
-    initializeHolidayInfo
+    initializeHolidayInfo,
+    refreshDataForTest
 } = require('../../src/workday-waiver');
+import { showDialog } from '../../js/window-aux.js';
+
+jest.mock('../../renderer/i18n-translator.js', () => ({
+    translatePage: jest.fn().mockReturnThis(),
+    getTranslationInLanguageData: jest.fn().mockReturnThis()
+}));
+
+const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
 
 function prepareMockup()
 {
@@ -34,10 +43,11 @@ function prepareMockup()
     waivedWorkdays.clear();
     const workdayWaiverHtml = path.join(__dirname, '../../src/workday-waiver.html');
     const content = fs.readFileSync(workdayWaiverHtml);
-    let parser = new DOMParser();
-    let htmlDoc = parser.parseFromString(content, 'text/html');
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
     populateList();
+    refreshDataForTest(languageData);
 }
 
 function addTestWaiver(day, reason)
@@ -92,6 +102,32 @@ describe('Test Workday Waiver Window', function()
             testWaiverCount(3);
         });
 
+        test('Table is sorted by Date', ()=>
+        {
+            //add some waivers
+
+            addTestWaiver('2021-07-20', 'some other reason');
+            addTestWaiver('2021-07-16', 'some reason');
+            addTestWaiver('2021-07-21', 'yet another reason');
+
+            let isSorted = true;
+            const rows = $('#waiver-list-table tbody  tr').get();
+            for (let i = 1; i < rows.length; i++)
+            {
+                const A = $(rows[i-1]).children('td').eq(1).text();
+                const B = $(rows[i]).children('td').eq(1).text();
+                const d1 = new Date(A);
+                const d2 = new Date(B);
+
+                if (d1 < d2)
+                {
+                    isSorted = false;
+                    break;
+                }
+            }
+            expect(isSorted).toBe(true);
+
+        });
         test('Time is not valid', () =>
         {
             $('#hours').val('not a time');
@@ -164,7 +200,6 @@ describe('Test Workday Waiver Window', function()
         test('Waiver was deleted', () =>
         {
             prepareMockup();
-            const { showDialog } = require('../../js/window-aux');
             addTestWaiver('2020-07-16', 'some reason');
             const deleteBtn = document.querySelectorAll('#waiver-list-table .delete-btn')[0];
             showDialog.mockImplementation((options, cb) =>

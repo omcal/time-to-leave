@@ -3,12 +3,25 @@
 <!--- Begin changes - Do not remove -->
 
 -   Enhancement [#645]: No confirmation popup when removing entry pair
+-   Enhancement [#649]: Improve time taken to import a database into TTL
 -   Enhancement [#661]: Add missing translations to Dutch
 -   Enhancement [#665]: Update export datebase name format to include a timestamp
+-   Enhancement [#690]: Provide helpful tip on hours fields with validation
 -   Enhancement [#691]: Adding a dismiss button on the notification, so you won't be bothered again on a current day
+-   Enhancement [#698]: Sorting waivers by date
+-   Enhancement [#718]: Use purple clock icon on tray and menus to enhance contrast on light/dark themes
+-   Fix #828: Show balance even though month ends on non-working day
 -   Fix [#650]: Month balance is incorrect
 -   Fix [#660]: Hours field on waiver manager is not validated
+-   Fix [#702]: Fixed day view not counting the waived value when looking at a waived day. Balance is now correct too.
+-   Fix [#724]: Correctly applying theme in Preferences window when the setting is "system default"
+-   Fix [#728]: Alignment and positioning of buttons on smaller screens for timetoleave.app
+-   Fix [#792]: Broken holiday tab on Workday Waiver Window
+-   Fix [#793]: Punch button now gets correctly translated when changing languages
+-   Translation: Time to Leave is now available in Bengali (bn)!
 -   Translation: Time to Leave is now available in Gujarati (gu)!
+-   Translation: Time to Leave is now available in Persian (fa-IR)
+-   Translation: Time to Leave is now available in Russian (ru-RU)!
 -   Translation: Time to Leave is now available in Turkish (tr-TR)
 
 <!--- End changes - Do not remove -->
@@ -17,14 +30,49 @@ Who built 2.0.2:
 
 <!--- Begin users - Do not remove -->
 
+-   AayushSaini101
+-   BamButz
+-   BhumikaSaini
+-   Dudu-CNU
 -   JulienZD
+-   L8Y
 -   LauraToddCodes
+-   Minozzzi
+-   MohitSinghChauhan
+-   Pizzo15
+-   PrateekBing
+-   QuentinPhilipp
+-   R3z4Pr0gramm3r
+-   Sahana-YS
 -   Semvrij
+-   SubhamChoudhury
+-   aakashpothepalli
+-   adarivamsi
 -   adarshnanwani
 -   anujjoshi63
+-   araujoarthur0
+-   chopinballadeno4
+-   dark-coder155
+-   fcoiuri
+-   fikimaul
+-   giovannipessiva
+-   haeramkeem
+-   hy38
+-   id-konstantin-stepanov
+-   jdkramhoft
+-   kimvcp
+-   kishorliv
+-   makos
+-   manisai216
+-   mayanhavoc
 -   mayankmohak
 -   nikkhil31
 -   omerisildak
+-   panicswtch
+-   ramonh
+-   ri-tae-ka
+-   sgronlund
+-   stark255
 -   thamara
 -   thefyrewire
 -   tupaschoal

@@ -5,8 +5,7 @@
         "month-balance-title": "આ મહિના માટે આજ સુધી સંતુલન. સકારાત્મક સંતુલનનો અર્થ એ છે કે તમારે આજે (અથવા બાકીના મહિનામાં) કામ કરવાની જરૂર નથી.",
         "overall-balance": "એકંદરે બેલેન્સ",
         "overall-balance-title": "મહિનાના અંત અથવા વર્તમાન દિવસના અંત સુધી એકંદરે સંતુલન",
-        "switch-view": "સ્વિચ દૃશ્ય",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "સ્વિચ દૃશ્ય"
     },
     "$DateUtil": {
         "april": "એપ્રિલ",
@@ -14,27 +13,20 @@
         "december": "ડિસેમ્બર",
         "february": "ફેબ્રુઆરી",
         "fri": "શુક્ર",
-        "friday": "શુક્રવાર",
         "january": "જાન્યુઆરી",
         "july": "જુલાઈ",
         "june": "જૂન",
         "march": "માર્ચ",
         "may": "મે",
         "mon": "સોમ",
-        "monday": "સોમવાર",
         "november": "નવેમ્બર",
         "october": "ઓક્ટોબર",
         "sat": "શનિ",
-        "saturday": "શનિવાર",
         "september": "સપ્ટેમ્બર",
         "sun": "રવિ",
-        "sunday": "રવિવાર",
         "thu": "ગુરુ",
-        "thursday": "ગુરુવાર",
         "tue": "મંગળ",
-        "tuesday": "મંગળવારે",
-        "wed": "બુધ",
-        "wednesday": "બુધવાર"
+        "wed": "બુધ"
     },
     "$FlexibleDayCalendar": {
         "current-day": "વર્તમાન દિવસ પર જાઓ",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "પંચ કરવાનું ભૂલો નહિં!",
         "time-to-leave": "અરે ત્યાં! મને લાગે છે કે હવે વિદાય લેવાનો સમય છે.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "આજે માટે કાismી નાખો"
     },
     "$Preferences": {
         "allowRecurringNotifications": "રિકરિંગ સૂચનાઓને મંજૂરી આપો",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "સોર્સ પસંદ કરેલ રજાઓ",
         "start-date": "પ્રારંભ તારીખ",
         "state": "રાજ્ય:",
-        "time-to-leave": "છોડવાનો સમય",
         "title": "છોડવાનો સમય - વર્કડે માફી મેનેજર",
         "to": "પ્રતિ",
         "waive": "માફ કરો",
@@ -210,5 +201,8 @@
         "waiver-reason": "માફી કારણ",
         "year": "વર્ષ",
         "yes": "હા"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"કૃપા કરી સમય 00:00 થી 23:59 સુધી માન્ય 24-કલાકના બંધારણમાં દાખલ કરો\")"
     }
 }

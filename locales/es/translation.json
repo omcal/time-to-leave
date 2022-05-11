@@ -5,8 +5,7 @@
         "month-balance-title": "Balance hasta hoy para este mes. Un balance positivo significa horas extras que no necesitas trabajar hoy (o el resto del mes).",
         "overall-balance": "Balance general",
         "overall-balance-title": "Balance global hasta el final del mes o del día actual",
-        "switch-view": "Cambiar la vista",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Cambiar la vista"
     },
     "$DateUtil": {
         "april": "Abril",
@@ -14,27 +13,20 @@
         "december": "Diciembre",
         "february": "Febrero",
         "fri": "Vie",
-        "friday": "Viernes",
         "january": "Enero",
         "july": "Julio",
         "june": "Junio",
         "march": "Marzo",
         "may": "Mayo",
         "mon": "Lun",
-        "monday": "Lunes",
         "november": "Noviembre",
         "october": "Octubre",
         "sat": "Sáb",
-        "saturday": "Sábado",
         "september": "Septiembre",
         "sun": "Dom",
-        "sunday": "Domingo",
         "thu": "Jue",
-        "thursday": "Jueves",
         "tue": "Mar",
-        "tuesday": "Martes",
-        "wed": "Mié",
-        "wednesday": "Miércoles"
+        "wed": "Mié"
     },
     "$FlexibleDayCalendar": {
         "current-day": "Ir a dia actual",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "¡No olvides marcar tarjeta!",
         "time-to-leave": "¡Hola! Creo que es hora de irse",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Descartar por hoy"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Permitir notificaciones recurrentes",
@@ -141,8 +133,8 @@
         "hideNonWorkingDay": "Ocultar los días no laborables (Vista por mes)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Horas por día",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "Habilitar el llenado previo del tiempo de descanso",
+        "breakTimeInterval": "Intervalo de tiempo de descanso",
         "language": "Languaje",
         "light": "Claro",
         "minimizeToTray": "El botón de minimizar debería minimizar a la bandeja",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "Fuente: vacaciones seleccionadas",
         "start-date": "Fecha de inicio",
         "state": "Estado:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Administrador de Día libre",
         "to": "a",
         "waive": "Renuncia",
@@ -210,5 +201,8 @@
         "waiver-reason": "Razon de día libre",
         "year": "Año",
         "yes": "Sí"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"Introduzca la hora en un formato válido de 24 horas de 00:00 a 23:59\")"
     }
 }

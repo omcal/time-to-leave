@@ -5,8 +5,7 @@
         "month-balance-title": "இந்த மாதத்திற்கு இன்று வரை இருக்கும் இருப்பு . நேர்மறையான இருப்பு என்பது இன்று நீங்கள் வேலை செய்யத் தேவையில்லாத கூடுதல் மணிநேரம் (அல்லது மாதத்தின் ஓய்வு).",
         "overall-balance": "ஒட்டுமொத்த இருப்பு",
         "overall-balance-title": "மாத இறுதி அல்லது தற்போதைய நாள் வரை ஒட்டுமொத்த இருப்பு",
-        "switch-view": "காட்சி மாறவும்",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "காட்சி மாறவும்"
     },
     "$DateUtil": {
         "april": "ஏப்ரல்",
@@ -14,27 +13,20 @@
         "december": "டிசம்பர்",
         "february": "பிப்ரவரி",
         "fri": "வெள்ளி",
-        "friday": "வெள்ளிக்கிழமை",
         "january": "ஜனவரி",
         "july": "ஜூலை",
         "june": "ஜூன்",
         "march": "மார்ச்",
         "may": "மே",
         "mon": "திங்கள்",
-        "monday": "திங்கட்கிழமை",
         "november": "நவம்பர்",
         "october": "அக்டோபர்",
         "sat": "சனி",
-        "saturday": "சனிக்கிழமை",
         "september": "செப்டம்பர்",
         "sun": "ஞாயிறு",
-        "sunday": "ஞாயிற்றுக்கிழமை",
         "thu": "வியாழன்",
-        "thursday": "வியாழக்கிழமை",
         "tue": "செவ்வாய்",
-        "tuesday": "செவ்வாய்க்கிழமை",
-        "wed": "புதன்",
-        "wednesday": "புதன்கிழமை"
+        "wed": "புதன்"
     },
     "$FlexibleDayCalendar": {
         "current-day": "நடப்பு நாளுக்குச் செல்ல",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "பன்ச் செய்ய மறவாதீர்கள்",
         "time-to-leave": "இது நீங்கள் வெளியேற வேண்டிய நேரம் என்று நினைக்கிறேன்.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "இன்றைக்கு தள்ளுபடி"
     },
     "$Preferences": {
         "allowRecurringNotifications": "தொடர்ச்சியான அறிவிப்புகளை அனுமதிக்கவும்",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "மூல தேர்ந்தெடுக்கப்பட்ட விடுமுறைகள்",
         "start-date": "தொடக்க தேதி",
         "state": "மாநிலம்:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - வேலை நாள் விலக்கு மேலாளர்",
         "to": "க்கு",
         "waive": "விலக்கு",
@@ -210,5 +201,8 @@
         "waiver-reason": "விலக்கு காரணம்",
         "year": "ஆண்டு",
         "yes": "ஆம்"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"00:00 முதல் 23:59 வரை சரியான 24 மணி நேர வடிவத்தில் நேரத்தை உள்ளிடவும்\")"
     }
 }

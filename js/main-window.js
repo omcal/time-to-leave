@@ -1,11 +1,11 @@
 'use strict';
 
 const { app, BrowserWindow, dialog, ipcMain, Menu, shell, Tray } = require('electron');
-const { migrateFixedDbToFlexible } = require('./import-export.js');
-const { getDefaultWidthHeight, getUserPreferences } = require('./user-preferences.js');
 const path = require('path');
+const Store = require('electron-store');
+
 const { checkForUpdates, shouldCheckForUpdates } = require('./update-manager');
-const { appConfig, getDetails } = require('./app-config');
+const { migrateFixedDbToFlexible } = require('./import-export.js');
 const {
     getContextMenuTemplate,
     getDockMenuTemplate,
@@ -14,9 +14,11 @@ const {
     getMainMenuTemplate,
     getViewMenuTemplate
 } = require('./menus');
-const i18n = require('../src/configs/i18next.config');
+const { getCurrentTranslation } = require('../src/configs/i18next.config');
 let { contextMenu, tray } = require('./windows.js');
-const Store = require('electron-store');
+
+import { getDefaultWidthHeight, getUserPreferences } from './user-preferences.js';
+import { appConfig, getDetails } from './app-config.js';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -31,19 +33,19 @@ function createMenu()
 {
     const menu = Menu.buildFromTemplate([
         {
-            label: i18n.t('$Menu.menu'),
+            label: getCurrentTranslation('$Menu.menu'),
             submenu: getMainMenuTemplate(mainWindow)
         },
         {
-            label: i18n.t('$Menu.edit'),
+            label: getCurrentTranslation('$Menu.edit'),
             submenu: getEditMenuTemplate(mainWindow)
         },
         {
-            label: i18n.t('$Menu.view'),
+            label: getCurrentTranslation('$Menu.view'),
             submenu: getViewMenuTemplate()
         },
         {
-            label: i18n.t('$Menu.help'),
+            label: getCurrentTranslation('$Menu.help'),
             submenu: getHelpMenuTemplate()
         }
     ]);
@@ -52,7 +54,7 @@ function createMenu()
     {
         Menu.setApplicationMenu(menu);
         // Use the macOS dock if we've got it
-        let dockMenuTemplate = getDockMenuTemplate(mainWindow);
+        const dockMenuTemplate = getDockMenuTemplate(mainWindow);
         app.dock.setMenu(Menu.buildFromTemplate(dockMenuTemplate));
         mainWindow.maximize();
     }
@@ -90,7 +92,7 @@ function createWindow()
 
     ipcMain.on('TOGGLE_TRAY_PUNCH_TIME', function(_event, arg)
     {
-        let contextMenuTemplate = getContextMenuTemplate(mainWindow);
+        const contextMenuTemplate = getContextMenuTemplate(mainWindow);
         contextMenuTemplate[0].enabled = arg;
         contextMenu = Menu.buildFromTemplate(contextMenuTemplate);
         tray.setContextMenu(contextMenu);
@@ -157,10 +159,10 @@ function proposeFlexibleDbMigration()
 {
     const options = {
         type: 'question',
-        buttons: [i18n.t('$Menu.migrate'), i18n.t('$Menu.fresh-start')],
+        buttons: [getCurrentTranslation('$Menu.migrate'), getCurrentTranslation('$Menu.fresh-start')],
         defaultId: 2,
-        title: i18n.t('$Menu.migrate-calendar-to-flexible'),
-        message: i18n.t('$Menu.should-migrate-to-flexible'),
+        title: getCurrentTranslation('$Menu.migrate-calendar-to-flexible'),
+        message: getCurrentTranslation('$Menu.should-migrate-to-flexible'),
     };
 
     const response = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
@@ -173,10 +175,10 @@ function proposeFlexibleDbMigration()
             dialog.showMessageBox(BrowserWindow.getFocusedWindow(),
                 {
                     title: 'Time to Leave',
-                    message: i18n.t('$Menu.database-migrated'),
+                    message: getCurrentTranslation('$Menu.database-migrated'),
                     type: 'info',
                     icon: appConfig.iconpath,
-                    detail: i18n.t('$Menu.migration-successful')
+                    detail: getCurrentTranslation('$Menu.migration-successful')
                 });
         }
         else
@@ -188,10 +190,10 @@ function proposeFlexibleDbMigration()
     {
         const confirmOptions = {
             type: 'question',
-            buttons: [i18n.t('$Menu.cancel'), i18n.t('$Menu.yes-please')],
+            buttons: [getCurrentTranslation('$Menu.cancel'), getCurrentTranslation('$Menu.yes-please')],
             defaultId: 2,
-            title: i18n.t('$Menu.fresh-start'),
-            message: i18n.t('$Menu.fresh-start-confirm'),
+            title: getCurrentTranslation('$Menu.fresh-start'),
+            message: getCurrentTranslation('$Menu.fresh-start-confirm'),
         };
 
         const confirmResponse = dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), confirmOptions);
@@ -209,9 +211,9 @@ function handleFailedFlexibleDbMigration(migrateResult)
 {
     const warningResponse = dialog.showMessageBoxSync({
         type: 'warning',
-        buttons: [i18n.t('$Menu.report'), i18n.t('$Menu.quit')],
-        title: i18n.t('$Menu.failed-migrating'),
-        message: i18n.t('$Menu.something-went-wrong')
+        buttons: [getCurrentTranslation('$Menu.report'), getCurrentTranslation('$Menu.quit')],
+        title: getCurrentTranslation('$Menu.failed-migrating'),
+        message: getCurrentTranslation('$Menu.something-went-wrong')
     });
 
     if (warningResponse === 0 /*report*/)

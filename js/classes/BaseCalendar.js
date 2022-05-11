@@ -2,22 +2,24 @@
 
 const Store = require('electron-store');
 const { ipcRenderer } = require('electron');
-const {
+
+import {
     hourMinToHourFormatted,
     isNegative,
     subtractTime,
     sumTime,
     validateTime
-} = require('../time-math.js');
-const {
+} from '../time-math.js';
+import {
     formatDayId,
     displayWaiverWindow
-} = require('../workday-waiver-aux.js');
-const { showDay, switchCalendarView } = require('../user-preferences.js');
-const { getDateStr, getMonthLength } = require('../date-aux.js');
-const { getMonthName } = require('../date-to-string-util.js');
-const { computeAllTimeBalanceUntilAsync } = require('../time-balance.js');
-const { generateKey } = require('../date-db-formatter.js');
+} from '../workday-waiver-aux.js';
+import { showDay, switchCalendarView } from '../user-preferences.js';
+import { getDateStr, getMonthLength } from '../date-aux.js';
+import { getMonthName } from '../date-to-string-util.js';
+import { computeAllTimeBalanceUntilAsync } from '../time-balance.js';
+import { generateKey } from '../date-db-formatter.js';
+import { getTranslationInLanguageData } from '../../renderer/i18n-translator.js';
 
 // Global values for calendar
 const flexibleStore = new Store({name: 'flexible-store'});
@@ -29,9 +31,10 @@ class BaseCalendar
     /**
      * @param {Object.<string, any>} preferences
      */
-    constructor(preferences)
+    constructor(preferences, languageData)
     {
         this._calendarDate = new Date();
+        this.updateLanguageData(languageData);
         this.loadInternalStore();
         this.loadInternalWaiveStore();
         this.updatePreferences(preferences);
@@ -58,6 +61,15 @@ class BaseCalendar
     }
 
     /**
+     * Searches for an i18n code inside the last loaded language data
+     * @return {String}
+     */
+    _getTranslation(code)
+    {
+        return getTranslationInLanguageData(this._languageData.data, code);
+    }
+
+    /**
      * Calls Async method to update the All Time Balance.
      */
     _updateAllTimeBalance()
@@ -66,7 +78,7 @@ class BaseCalendar
         computeAllTimeBalanceUntilAsync(targetDate)
             .then(balance =>
             {
-                let balanceElement = $('#overall-balance');
+                const balanceElement = $('#overall-balance');
                 if (balanceElement)
                 {
                     balanceElement.val(balance).removeClass('text-success text-danger')
@@ -88,7 +100,7 @@ class BaseCalendar
      */
     _getWaiverStore(year, month, day)
     {
-        let dayKey = getDateStr(new Date(year, month, day));
+        const dayKey = getDateStr(new Date(year, month, day));
         return this._internalWaiverStore[dayKey];
     }
 
@@ -121,7 +133,7 @@ class BaseCalendar
      */
     _updateTableHeader()
     {
-        $('#month-year').html(`${getMonthName(this._getCalendarMonth())} ${this._getCalendarYear()}`);
+        $('#month-year').html(`${getMonthName(this._languageData.data, this._getCalendarMonth())} ${this._getCalendarYear()}`);
     }
 
     /**
@@ -130,6 +142,26 @@ class BaseCalendar
     _updateTableBody()
     {
         $('#calendar-table-body').html(this._generateTableBody());
+    }
+
+    /**
+     * Returns the code of the table footer of the calendar.
+     * @return {string}
+     */
+    _generateTableFooter()
+    {
+        return '<button class="punch-button" id="punch-button" disabled>' +
+                   '<img src="assets/fingerprint.svg" height="36" width="36"></img>' +
+                   `<label for="punch-button" id="punch-button-label">${this._getTranslation('$Menu.punch-time')}</label>` +
+               '</button>\n';
+    }
+
+    /**
+     * Updates the code of the table footer of the calendar, to be called on demand.
+     */
+    _updateTableFooter()
+    {
+        $('#footer').html(this._generateTableFooter());
     }
 
     /**
@@ -149,6 +181,7 @@ class BaseCalendar
     {
         this._updateTableHeader();
         this._updateTableBody();
+        this._updateTableFooter();
         this._updateBasedOnDB();
 
         const isCurrentMonth = this._getTodayMonth() === this._getCalendarMonth() && this._getTodayYear() === this._getCalendarYear();
@@ -159,6 +192,9 @@ class BaseCalendar
         this._updateLeaveBy();
 
         const calendar = this;
+
+        $('#punch-button').on('click', () => { calendar.punchDate(); });
+
         $('input[type=\'time\']').off('input propertychange').on('input propertychange', function()
         {
             //  deepcode ignore no-invalid-this: jQuery use
@@ -187,7 +223,7 @@ class BaseCalendar
     {
         const dateKey = generateKey(year, month, day);
         const values = this._getStore(dateKey);
-        if (values !== undefined)
+        if (values !== undefined && values.length > 0)
         {
             const validatedTimes = this._validateTimes(values);
             const inputsHaveExpectedSize = values.length >= 2 && values.length % 2 === 0;
@@ -370,6 +406,15 @@ class BaseCalendar
     }
 
     /**
+     * Updates calendar language data from a given array.
+     * @param {Object.<string, string>} languageData
+     */
+    updateLanguageData(languageData)
+    {
+        this._languageData = languageData;
+    }
+
+    /**
      * Stores year data in memory to make operations faster
      */
     loadInternalStore()
@@ -455,7 +500,7 @@ class BaseCalendar
         const dateKey = generateKey(year, month, day);
         const inputs = $('#' + dateKey + ' input[type="time"]');
         let allInputsFilled = true;
-        for (let input of inputs)
+        for (const input of inputs)
         {
             allInputsFilled &= $(input).val().length !== 0;
         }
@@ -469,7 +514,7 @@ class BaseCalendar
      */
     _calculateBreakEnd(breakBegin)
     {
-        let breakInterval = this._getBreakTimeInterval();
+        const breakInterval = this._getBreakTimeInterval();
         let breakEnd = sumTime(breakBegin, breakInterval);
 
         breakEnd = validateTime(breakEnd) ? breakEnd : '23:59';
@@ -558,7 +603,7 @@ class BaseCalendar
      */
     _updateDbEntry(dateKey, newValues)
     {
-        let validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
+        const validatedTimes = this._validateTimes(newValues, true /*removeEndingInvalids*/);
         if (validatedTimes.length > 0)
         {
             this._setStore(dateKey, validatedTimes);
@@ -653,7 +698,7 @@ class BaseCalendar
      */
     _validateTimes(values, removeEndingInvalids = false)
     {
-        let validatedTimes = [];
+        const validatedTimes = [];
         if (values.length > 0)
         {
             for (const time of values)
@@ -699,6 +744,6 @@ class BaseCalendar
     }
 }
 
-module.exports = {
+export {
     BaseCalendar
 };

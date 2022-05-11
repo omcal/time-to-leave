@@ -1,16 +1,17 @@
 'use strict';
 
 const { ipcRenderer } = require('electron');
-const { getDefaultWidthHeight} = require('../user-preferences.js');
-const { FlexibleMonthCalendar } = require('./FlexibleMonthCalendar.js');
-const { FlexibleDayCalendar } = require('./FlexibleDayCalendar.js');
+
+import { getDefaultWidthHeight} from '../user-preferences.js';
+import { FlexibleMonthCalendar } from './FlexibleMonthCalendar.js';
+import { FlexibleDayCalendar } from './FlexibleDayCalendar.js';
 
 class CalendarFactory
 {
-    static getInstance(preferences, calendar = undefined)
+    static getInstance(preferences, languageData, calendar = undefined)
     {
         const view = preferences['view'];
-        let widthHeight = getDefaultWidthHeight();
+        const widthHeight = getDefaultWidthHeight();
         if (view === 'day')
         {
             if (calendar === undefined || calendar.constructor.name !== 'FlexibleDayCalendar')
@@ -19,10 +20,11 @@ class CalendarFactory
                 {
                     ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 }
-                return new FlexibleDayCalendar(preferences);
+                return new FlexibleDayCalendar(preferences, languageData);
             }
             else
             {
+                calendar.updateLanguageData(languageData);
                 calendar.updatePreferences(preferences);
                 calendar.redraw();
                 return calendar;
@@ -36,10 +38,11 @@ class CalendarFactory
                 {
                     ipcRenderer.send('RESIZE_MAIN_WINDOW', widthHeight.width, widthHeight.height);
                 }
-                return new FlexibleMonthCalendar(preferences);
+                return new FlexibleMonthCalendar(preferences, languageData);
             }
             else
             {
+                calendar.updateLanguageData(languageData);
                 calendar.updatePreferences(preferences);
                 calendar.redraw();
                 return calendar;
@@ -52,6 +55,6 @@ class CalendarFactory
     }
 }
 
-module.exports = {
+export {
     CalendarFactory
 };

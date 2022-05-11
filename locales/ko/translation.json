@@ -5,8 +5,7 @@
         "month-balance-title": "현재까지의 이번 달 작업 달성 현황입니다. 양수 값은 목표 작업 시간보다 초과 근무하여 오늘(혹은 이번 달) 더 이상 일할 필요가 없다는 것을 나타냅니다.",
         "overall-balance": "전체 작업 달성도",
         "overall-balance-title": "월말 혹은 현재까지의 총 작업 달성 현황",
-        "switch-view": "보기 모드 전환",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "보기 모드 전환"
     },
     "$DateUtil": {
         "april": "4월",
@@ -14,27 +13,20 @@
         "december": "12월",
         "february": "2월",
         "fri": "금",
-        "friday": "금요일",
         "january": "1월",
         "july": "7월",
         "june": "6월",
         "march": "3월",
         "may": "5월",
         "mon": "월",
-        "monday": "월요일",
         "november": "11월",
         "october": "10월",
         "sat": "토",
-        "saturday": "토요일",
         "september": "9월",
         "sun": "일",
-        "sunday": "일요일",
         "thu": "목",
-        "thursday": "목요일",
         "tue": "화",
-        "tuesday": "화요일",
-        "wed": "수",
-        "wednesday": "수요일"
+        "wed": "수"
     },
     "$FlexibleDayCalendar": {
         "current-day": "오늘로 이동",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "시간 기록하는 것 잊지 마세요!",
         "time-to-leave": "저기요! 이제 퇴근할 시간인 것 같은데요.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "오늘은 여기까지 입니다!"
     },
     "$Preferences": {
         "allowRecurringNotifications": "반복 알림 허용",
@@ -141,8 +133,8 @@
         "hideNonWorkingDay": "휴일 숨기기 (월별 보기에 적용)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "하루 작업 목표 시간",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "휴식 시간 미리 채우기 기능 사용",
+        "breakTimeInterval": "휴식 시간 간격",
         "language": "언어",
         "light": "밝음",
         "minimizeToTray": "최소화 시 시스템 트레이로 이동",
@@ -194,14 +186,13 @@
         "loaded-waivers-holidays": "공휴일 정보를 등록했습니다.",
         "nav-holiday": "공휴일",
         "no": "아니오",
-        "no-working-days-on-range": "휴가를 추가할 수 없습니다. 휴가 내에 어떤 근무일도 포함되지 않습니다.",
+        "no-working-days-on-range": "휴가를 추가할 수 없습니다. 휴가 내에 근무일을 포함할 수 없습니다.",
         "on-working-day": "근무일 설정 여부",
         "reason": "사유",
         "remove-waiver": "일정을 변경하려면 먼저 기존 휴가 정보를 제거해 주세요.",
         "source-selected-holidays": "선택된 공휴일 추가",
         "start-date": "시작일",
         "state": "주:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - 휴가 관리자",
         "to": "이 날까지",
         "waive": "휴가 추가",
@@ -210,5 +201,8 @@
         "waiver-reason": "휴가 사유",
         "year": "연도",
         "yes": "예"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"00:00부터 23:59까지 유효한 24 시간 형식으로 시간을 입력하세요.\")"
     }
 }

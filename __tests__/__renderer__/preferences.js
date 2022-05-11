@@ -6,12 +6,19 @@ const path = require('path');
 const {
     defaultPreferences,
     getPreferencesFilePath,
+    getUserPreferences,
     savePreferences
 } = require('../../js/user-preferences');
-const i18n = require('../../src/configs/i18next.config');
+const { preferencesApi } = require('../../renderer/preload-scripts/preferences-api.js');
 
 /* eslint-disable-next-line no-global-assign */
 window.$ = require('jquery');
+
+// APIs from the preload script of the preferences window
+window.mainApi = preferencesApi;
+// Mocking with the actual access that main would have
+window.mainApi.getUserPreferencesPromise = () => { return new Promise((resolve) => resolve(getUserPreferences())); };
+
 const {
     refreshContent,
     populateLanguages,
@@ -34,8 +41,8 @@ function prepareMockup()
 {
     const userPreferences = path.join(__dirname, '../../src/preferences.html');
     const content = fs.readFileSync(userPreferences);
-    let parser = new DOMParser();
-    let htmlDoc = parser.parseFromString(content, 'text/html');
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(content, 'text/html');
     document.body.innerHTML = htmlDoc.body.innerHTML;
 }
 
@@ -77,7 +84,7 @@ function resetPreferenceFile()
     if (fs.existsSync(preferencesFilePath)) fs.unlinkSync(preferencesFilePath);
 }
 
-let testPreferences = Object.assign({}, defaultPreferences);
+const testPreferences = Object.assign({}, defaultPreferences);
 
 describe('Test Preferences Window', () =>
 {
@@ -86,17 +93,18 @@ describe('Test Preferences Window', () =>
 
     describe('Changing values of items in window', () =>
     {
-        beforeEach(() =>
+        beforeEach((async(done) =>
         {
             prepareMockup();
+            await refreshContent();
             renderPreferencesWindow();
-            populateLanguages(i18n);
+            populateLanguages();
             listenerLanguage();
-        });
+            done();
+        }));
         afterEach(() =>
         {
             savePreferences(testPreferences);
-            refreshContent();
         });
         test('Change count-today to true', () =>
         {

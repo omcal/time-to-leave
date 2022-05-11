@@ -4,6 +4,7 @@
 const path = require('path');
 const { remote } = require('electron');
 const { BrowserWindow } = remote;
+import * as windowAux from '../../js/window-aux.js';
 
 describe('window-aux.js Testing', function()
 {
@@ -26,7 +27,7 @@ describe('window-aux.js Testing', function()
 
         test('No bind: should not open anything', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
@@ -45,14 +46,13 @@ describe('window-aux.js Testing', function()
 
         test('Bind: should open devTools', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
             testWindow.webContents.on('dom-ready', () =>
             {
-                const { bindDevToolsShortcut } = require('../../js/window-aux.js');
-                bindDevToolsShortcut(window);
+                windowAux.bindDevToolsShortcut(window);
                 window.dispatchEvent(devToolsShortcut);
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
@@ -66,14 +66,13 @@ describe('window-aux.js Testing', function()
 
         test('Bind: bad shortcut, should not open devTools', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
             expect(testWindow.webContents.isDevToolsOpened()).not.toBeTruthy();
 
             testWindow.webContents.on('dom-ready', () =>
             {
-                const { bindDevToolsShortcut } = require('../../js/window-aux.js');
-                bindDevToolsShortcut(window);
+                windowAux.bindDevToolsShortcut(window);
                 window.dispatchEvent(badDevToolsShortcut);
             });
             testWindow.webContents.on('did-fail-load', (event, code, desc, url, isMainFrame) =>
@@ -91,16 +90,15 @@ describe('window-aux.js Testing', function()
 
         test('Does not crash', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
 
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                const windowAux = require('../../js/window-aux.js');
                 spy = jest.spyOn(windowAux, 'showDialog');
 
-                let options = {
+                const options = {
                     title: 'Time to Leave',
                 };
                 windowAux.showDialog(options, () =>
@@ -126,13 +124,12 @@ describe('window-aux.js Testing', function()
 
         test('Does not crash', async() =>
         {
-            let testWindow = new BrowserWindow(browserWindowOptions);
+            const testWindow = new BrowserWindow(browserWindowOptions);
             testWindow.loadURL(mockHtmlPath);
 
             let spy;
             testWindow.webContents.on('dom-ready', () =>
             {
-                const windowAux = require('../../js/window-aux.js');
                 const { dialog } = require('electron').remote;
 
                 spy = jest.spyOn(dialog, 'showMessageBoxSync').mockImplementation(() => {});

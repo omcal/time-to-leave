@@ -18,6 +18,13 @@ window.$.fn.extend({
     }
 });
 
+jest.mock('../../../renderer/i18n-translator.js', () => ({
+    translatePage: jest.fn().mockReturnThis(),
+    getTranslationInLanguageData: jest.fn().mockReturnThis()
+}));
+
+const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
+
 describe('FlexibleDayCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
@@ -41,9 +48,10 @@ describe('FlexibleDayCalendar class Tests', () =>
     waivedWorkdays.set(waivedEntries);
 
     const today = new Date();
-    let testPreferences = defaultPreferences;
+    const testPreferences = defaultPreferences;
     testPreferences['view'] = 'day';
-    let calendar = CalendarFactory.getInstance(testPreferences);
+
+    const calendar = CalendarFactory.getInstance(testPreferences, languageData);
 
     test('FlexibleDayCalendar starts with today\'s date', () =>
     {
@@ -113,13 +121,62 @@ describe('FlexibleDayCalendar class Tests', () =>
         expect(calendar._getWaiverStore(2010, 11, 31)).toStrictEqual({ reason: 'New Year\'s eve', hours: '08:00' });
     });
 
+    describe('Testing getDayTotal', () =>
+    {
+        test('getDayTotal on workdays', () =>
+        {
+            // Original dates
+            expect(calendar._getDayTotal(2020, 3, 1)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 3, 2)).toStrictEqual('08:00');
+
+            // Day that doesn't have contents
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual(undefined);
+
+            // Adding a different set
+            calendar._setStore('2010-3-1', ['05:00', '07:00', '09:00', '10:00']);
+            expect(calendar._getStore('2010-3-1')).toStrictEqual(['05:00', '07:00', '09:00', '10:00']);
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual('03:00');
+
+            // Clearing entry - back to undefined value
+            calendar._removeStore('2010-3-1');
+            expect(calendar._getDayTotal(2010, 3, 1)).toStrictEqual(undefined);
+        });
+
+        test('getDayTotal on waived days', () =>
+        {
+            // Original dates
+            expect(calendar._getDayTotal(2019, 11, 31)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 0, 1)).toStrictEqual('08:00');
+            expect(calendar._getDayTotal(2020, 3, 10)).toStrictEqual('08:00');
+
+            // Day that doesn't have contents
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual(undefined);
+
+            // Adding a different set
+            const newWaivedEntry = {
+                '2010-03-01': { reason: 'Test', hours: '06:00' }
+            };
+            waivedWorkdays.set(newWaivedEntry);
+
+            calendar.loadInternalWaiveStore();
+            expect(calendar._getWaiverStore(2010, 2, 1)).toStrictEqual({ reason: 'Test', hours: '06:00' });
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual('06:00');
+
+            // Clearing entry - back to undefined value
+            waivedWorkdays.clear();
+            waivedWorkdays.set(waivedEntries);
+            calendar.loadInternalWaiveStore();
+            expect(calendar._getDayTotal(2010, 2, 1)).toStrictEqual(undefined);
+        });
+    });
+
     test('FlexibleDayCalendar Day Changes', () =>
     {
         expect(calendar._getCalendarDate()).toBe(today.getDate());
 
-        let expectedNextDay = new Date(today);
+        const expectedNextDay = new Date(today);
         expectedNextDay.setDate(expectedNextDay.getDate() + 1);
-        let expectedPrevDay = new Date(today);
+        const expectedPrevDay = new Date(today);
         expectedPrevDay.setDate(expectedPrevDay.getDate() - 1);
 
         calendar._nextDay();
@@ -218,7 +275,7 @@ describe('FlexibleDayCalendar class Tests', () =>
         {
             // Calendar is set as if someone was looking at previous day
             calendar._prevDay();
-            let prevDayDate = calendar._calendarDate;
+            const prevDayDate = calendar._calendarDate;
 
             // Refreshing with the date being looked at should push it to today
             calendar.refreshOnDayChange(prevDayDate.getDate(), prevDayDate.getMonth(), prevDayDate.getFullYear());
@@ -242,13 +299,13 @@ describe('FlexibleDayCalendar class Tests', () =>
 
     test('FlexibleMonthCalendar to FlexibleDayCalendar', () =>
     {
-        let testPreferences = defaultPreferences;
+        const testPreferences = defaultPreferences;
         testPreferences['view'] = 'month';
-        let calendar = CalendarFactory.getInstance(testPreferences);
+        let calendar = CalendarFactory.getInstance(testPreferences, languageData);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
 
         testPreferences['view'] = 'day';
-        calendar = CalendarFactory.getInstance(testPreferences, calendar);
+        calendar = CalendarFactory.getInstance(testPreferences, languageData, calendar);
         expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
     });
 });

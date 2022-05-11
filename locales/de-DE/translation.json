@@ -5,8 +5,7 @@
         "month-balance-title": "Bilanz positiv bis heute für diesen Monat. Eine positive Bilanz bedeutet extra Stunden für die Sie heute nicht arbeiten müssen (oder den Rest des Monats).",
         "overall-balance": "Gesamtbilanz",
         "overall-balance-title": "Gesamtbilanz bis zum Ende des Monats oder den heutigen Tag",
-        "switch-view": "Ansicht ändern",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Ansicht ändern"
     },
     "$DateUtil": {
         "april": "April",
@@ -14,27 +13,20 @@
         "december": "Dezember",
         "february": "Februar",
         "fri": "Fr",
-        "friday": "Freitag",
         "january": "Januar",
         "july": "Juli",
         "june": "Juni",
         "march": "März",
         "may": "Mai",
         "mon": "Mo",
-        "monday": "Montag",
         "november": "November",
         "october": "Oktober",
         "sat": "Sa",
-        "saturday": "Samstag",
         "september": "September",
         "sun": "So",
-        "sunday": "Sonntag",
         "thu": "Do",
-        "thursday": "Donnerstag",
         "tue": "Di",
-        "tuesday": "Dienstag",
-        "wed": "Mi",
-        "wednesday": "Mittwoch"
+        "wed": "Mi"
     },
     "$FlexibleDayCalendar": {
         "current-day": "Zum heutigen Tag springen",
@@ -91,15 +83,15 @@
         "export-db-to-file": "Export Datenbank in Datei",
         "failed-entries": "Fehlerhafte Einträge",
         "failed-migrating": "Migrierung fehlgeschlagen",
-        "fresh-start": "Fresh Start",
-        "fresh-start-confirm": "Are you sure you want a fresh start?",
+        "fresh-start": "Neuanfang",
+        "fresh-start-confirm": "Sind Sie sicher, dass Sie einen Neuanfang wollen?",
         "help": "Hilfe",
         "import": "Import",
         "import-database": "Datenbank Import",
         "import-db-from-file": "Datenbank Import aus Datei",
         "import-successful": "Yay! Import erfolgreich!",
         "menu": "Menü",
-        "migrate": "Migrate",
+        "migrate": "Migrieren",
         "migrate-calendar-to-flexible": "Migriere fixierte Kalender Datenbank zu flexibler",
         "migration-successful": "Yay! Migration erfolgreich!",
         "no-thanks": "Nein, danke",
@@ -113,7 +105,7 @@
         "report": "Melden",
         "select-all": "Alle selektieren",
         "send-feedback": "Feedback senden",
-        "should-migrate-to-flexible": "One of the new features of this Time to Leave release is a flexible number of entries for the calendar.\n\nThis new view uses a new database format.\nTo use it, you can either migrate your existing database to the new format or make a fresh start.",
+        "should-migrate-to-flexible": "Eine der neuen Funktionen dieser Version von Time to Leave ist eine flexible Anzahl von Einträgen für den Kalender.\n\nDiese neue Ansicht verwendet ein neues Datenbankformat.\nUm sie zu nutzen, können Sie entweder Ihre bestehende Datenbank auf das neue Format migrieren oder neu beginnen.",
         "show-app": "Zeige App",
         "something-went-wrong": "Etwas ist falsch gelaufen :(",
         "toggle-dev-tools": "Entwickler Werkzeuge umschalten",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "Nicht vergessen Zeiten einzutragen",
         "time-to-leave": "Sie da! Ich denke es ist Zeit zu gehen.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Für heute ablehnen"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Wiederkehrende Benachrichtigungen erlauben",
@@ -141,8 +133,8 @@
         "hideNonWorkingDay": "Arbeitsfreie Tage ausblenden (Monatsansicht)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Stunden pro Tag",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "Pausenzeit-Prefill verwenden",
+        "breakTimeInterval": "Pausenzeitintervall",
         "language": "Sprache",
         "light": "Hell",
         "minimizeToTray": "Minimieren Button minimiert Fenster in den Tray",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "Ausgewählte Feiertage importieren",
         "start-date": "Startdatum",
         "state": "Bundesland:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Arbeitstag Ausschluss Manager",
         "to": "Bis",
         "waive": "Ausschließen",
@@ -210,5 +201,8 @@
         "waiver-reason": "Ausschlussgrund",
         "year": "Jahr",
         "yes": "Ja"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"Bitte geben Sie die Uhrzeit im gültigen 24-Stunden-Format von 00:00 bis 23:59 Uhr ein\")"
     }
 }

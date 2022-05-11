@@ -5,8 +5,7 @@
         "month-balance-title": "Balance up until today for this month. A positive balance means extra hours you don't need to work today (or the rest of the month).",
         "overall-balance": "Overall Balance",
         "overall-balance-title": "Overall balance until end of the month or current day",
-        "switch-view": "Switch View",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Switch View"
     },
     "$DateUtil": {
         "april": "April",
@@ -14,27 +13,20 @@
         "december": "December",
         "february": "February",
         "fri": "Fri",
-        "friday": "Friday",
         "january": "January",
         "july": "July",
         "june": "June",
         "march": "March",
         "may": "May",
         "mon": "Mon",
-        "monday": "Monday",
         "november": "November",
         "october": "October",
         "sat": "Sat",
-        "saturday": "Saturday",
         "september": "September",
         "sun": "Sun",
-        "sunday": "Sunday",
         "thu": "Thu",
-        "thursday": "Thursday",
         "tue": "Tue",
-        "tuesday": "Tuesday",
-        "wed": "Wed",
-        "wednesday": "Wednesday"
+        "wed": "Wed"
     },
     "$FlexibleDayCalendar": {
         "current-day": "Go to Current Day",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "Source selected holidays",
         "start-date": "Start Date",
         "state": "State:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Workday Waiver Manager",
         "to": "to",
         "waive": "Waive",
@@ -210,5 +201,8 @@
         "waiver-reason": "Waiver Reason",
         "year": "Year",
         "yes": "Yes"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"Please enter the time in valid 24-hour format from 00:00 to 23:59\")"
     }
 }

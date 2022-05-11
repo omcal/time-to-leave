@@ -42,14 +42,14 @@ function showDialog(options, successCallback)
  */
 function showAlert(message)
 {
-    let options = {
+    const options = {
         'title': 'Time to Leave',
         'message': message
     };
     dialog.showMessageBoxSync(BrowserWindow.getFocusedWindow(), options);
 }
 
-module.exports = {
+export {
     bindDevToolsShortcut,
     showAlert,
     showDialog

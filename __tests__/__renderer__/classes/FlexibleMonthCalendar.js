@@ -19,6 +19,13 @@ window.$.fn.extend({
     }
 });
 
+jest.mock('../../../renderer/i18n-translator.js', () => ({
+    translatePage: jest.fn().mockReturnThis(),
+    getTranslationInLanguageData: jest.fn().mockReturnThis()
+}));
+
+const languageData = {'language': 'en', 'data': {'dummy_string': 'dummy_string_translated'}};
+
 describe('FlexibleMonthCalendar class Tests', () =>
 {
     process.env.NODE_ENV = 'test';
@@ -42,8 +49,9 @@ describe('FlexibleMonthCalendar class Tests', () =>
     waivedWorkdays.set(waivedEntries);
 
     const today = new Date();
-    let testPreferences = defaultPreferences;
-    let calendar = CalendarFactory.getInstance(testPreferences);
+    const testPreferences = defaultPreferences;
+
+    const calendar = CalendarFactory.getInstance(testPreferences, languageData);
 
     test('FlexibleMonthCalendar starts with today\'s date', () =>
     {
@@ -167,7 +175,7 @@ describe('FlexibleMonthCalendar class Tests', () =>
         {
             // Calendar is set as if someone was looking at previous month
             calendar._prevMonth();
-            let prevMonthDate = calendar._calendarDate;
+            const prevMonthDate = calendar._calendarDate;
 
             // Refreshing with the date being looked at should push it to today
             calendar.refreshOnDayChange(prevMonthDate.getDate(), prevMonthDate.getMonth(), prevMonthDate.getFullYear());
@@ -191,13 +199,13 @@ describe('FlexibleMonthCalendar class Tests', () =>
 
     test('FlexibleDayCalendar to FlexibleMonthCalendar', () =>
     {
-        let testPreferences = defaultPreferences;
+        const testPreferences = defaultPreferences;
         testPreferences['view'] = 'day';
-        let calendar = CalendarFactory.getInstance(testPreferences);
+        let calendar = CalendarFactory.getInstance(testPreferences, languageData);
         expect(calendar.constructor.name).toBe('FlexibleDayCalendar');
 
         testPreferences['view'] = 'month';
-        calendar = CalendarFactory.getInstance(testPreferences, calendar);
+        calendar = CalendarFactory.getInstance(testPreferences, languageData, calendar);
         expect(calendar.constructor.name).toBe('FlexibleMonthCalendar');
     });
 });

@@ -5,8 +5,7 @@
         "month-balance-title": "今日までの月間累計。累計がプラスの時、当月中の労働時間が規定の時間を超えています。",
         "overall-balance": "全体累計",
         "overall-balance-title": "月末または当日までの全体累計",
-        "switch-view": "表示切替",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "表示切替"
     },
     "$DateUtil": {
         "april": "4月",
@@ -14,27 +13,20 @@
         "december": "12月",
         "february": "2月",
         "fri": "金",
-        "friday": "金曜日",
         "january": "1月",
         "july": "7月",
         "june": "6月",
         "march": "3月",
         "may": "5月",
         "mon": "月",
-        "monday": "月曜日",
         "november": "11月",
         "october": "10月",
         "sat": "土",
-        "saturday": "土曜日",
         "september": "9月",
         "sun": "日",
-        "sunday": "日曜日",
         "thu": "木",
-        "thursday": "木曜日",
         "tue": "火",
-        "tuesday": "火曜日",
-        "wed": "水",
-        "wednesday": "水曜日"
+        "wed": "水"
     },
     "$FlexibleDayCalendar": {
         "current-day": "現在の日付へ",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "打刻をお忘れなく!",
         "time-to-leave": "お疲れ様です！退勤時間になりました。",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "今日は解雇"
     },
     "$Preferences": {
         "allowRecurringNotifications": "通知の繰り返しを許可",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "選択した祝日を勤務免除日にする",
         "start-date": "開始日",
         "state": "州:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - 勤務免除日の管理",
         "to": "終了",
         "waive": "勤務免除",
@@ -210,5 +201,8 @@
         "waiver-reason": "勤務免除理由",
         "year": "年",
         "yes": "はい"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"00:00から23:59までの有効な24時間形式で時刻を入力してください\")"
     }
 }

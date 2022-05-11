@@ -5,8 +5,7 @@
         "month-balance-title": "Overzicht tot vandaag voor deze maand. Een positief overzicht betekent dat je vandaag (of de rest van de maand) geen extra uren hoeft te werken.",
         "overall-balance": "Algemeen overzicht",
         "overall-balance-title": "Algemeen overzicht tot het einde van de maand of de huidige dag",
-        "switch-view": "Weergave veranderen",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Weergave veranderen"
     },
     "$DateUtil": {
         "april": "April",
@@ -14,27 +13,20 @@
         "december": "December",
         "february": "Februari",
         "fri": "Vr",
-        "friday": "Vrijdag",
         "january": "Januari",
         "july": "Juli",
         "june": "Juni",
         "march": "Maart",
         "may": "Mei",
         "mon": "Ma",
-        "monday": "Maandag",
         "november": "November",
         "october": "Oktober",
         "sat": "Za",
-        "saturday": "Zaterdag",
         "september": "September",
         "sun": "Zo",
-        "sunday": "Zondag",
         "thu": "Do",
-        "thursday": "Donderdag",
         "tue": "Di",
-        "tuesday": "Dinsdag",
-        "wed": "Wo",
-        "wednesday": "Woensdag"
+        "wed": "Wo"
     },
     "$FlexibleDayCalendar": {
         "current-day": "Naar de huidige dag gaan",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "Vergeet niet de begintijd in te voeren!",
         "time-to-leave": "Hé daar! Ik denk dat het tijd is om te gaan.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Voor vandaag afwijzen"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Terugkerende meldingen toestaan",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "Geselecteerde feestdagen toevoegen",
         "start-date": "Startdatum",
         "state": "Staat:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Vrije dagen beheren",
         "to": "tot",
         "waive": "Vrije dag toevoegen",
@@ -210,5 +201,8 @@
         "waiver-reason": "Reden voor vrijstelling",
         "year": "Jaar",
         "yes": "Ja"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"Voer de tijd in een geldig 24-uurs formaat in van 00:00 tot 23:59\")"
     }
 }

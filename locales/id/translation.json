@@ -5,8 +5,7 @@
         "month-balance-title": "Keseimbangan sampai hari ini untuk bulan ini. Keseimbangan positif berarti jam tambahan yang tidak Perlu Anda kerjakan hari ini (atau sisa bulan).",
         "overall-balance": "Keseimbangan keseluruhan",
         "overall-balance-title": "Keseimbangan keseluruhan sampai akhir bulan atau hari ini",
-        "switch-view": "Ubah Tampilan",
-        "time-to-leave": "Time to Leave"
+        "switch-view": "Ubah Tampilan"
     },
     "$DateUtil": {
         "april": "April",
@@ -14,27 +13,20 @@
         "december": "Desember",
         "february": "Februari",
         "fri": "Jum",
-        "friday": "Jumat",
         "january": "Januari",
         "july": "Juli",
         "june": "Juni",
         "march": "Maret",
         "may": "Mei",
         "mon": "Sen",
-        "monday": "Senin",
         "november": "November",
         "october": "Oktober",
         "sat": "Sab",
-        "saturday": "Sabtu",
         "september": "September",
         "sun": "Min",
-        "sunday": "Minggu",
         "thu": "Kam",
-        "thursday": "Kamis",
         "tue": "Sel",
-        "tuesday": "Selasa",
-        "wed": "Rab",
-        "wednesday": "Rabu"
+        "wed": "Rab"
     },
     "$FlexibleDayCalendar": {
         "current-day": "Hari terakhir",
@@ -85,21 +77,21 @@
         "database-migrated": "Database telah dimigrasikan",
         "database-was-exported": "Oke, database telah di ekspor.",
         "edit": "Edit",
-        "exit": "keluar",
+        "exit": "Keluar",
         "export": "Ekspor",
         "export-database": "Ekspor database",
         "export-db-to-file": "Ekspor database ke file",
         "failed-entries": "Entri gagal",
         "failed-migrating": "Gagal migrasi",
-        "fresh-start": "Fresh Start",
-        "fresh-start-confirm": "Are you sure you want a fresh start?",
+        "fresh-start": "Mulai Baru",
+        "fresh-start-confirm": "Apakah Anda yakin ingin memulai awal baru?",
         "help": "Bantuan",
         "import": "Impor",
         "import-database": "Impor database",
         "import-db-from-file": "Impor database dari file",
         "import-successful": "Yes! Impor berhasil!",
         "menu": "Menu",
-        "migrate": "Migrate",
+        "migrate": "Migrasi",
         "migrate-calendar-to-flexible": "Migrasi kalender database tetap menjadi fleksibel",
         "migration-successful": "Yay! Migrasi selesai!",
         "no-thanks": "Tidak, Terima Kasih",
@@ -110,10 +102,10 @@
         "punched-time": "Waktu direkam",
         "quit": "Keluar",
         "reload": "Memuat ulang",
-        "report": "Report",
+        "report": "Laporan",
         "select-all": "Pilih Semua",
         "send-feedback": "Berikan masukan",
-        "should-migrate-to-flexible": "One of the new features of this Time to Leave release is a flexible number of entries for the calendar.\n\nThis new view uses a new database format.\nTo use it, you can either migrate your existing database to the new format or make a fresh start.",
+        "should-migrate-to-flexible": "Salah satu fitur baru dari rilis Time to Leave ini adalah jumlah entri kalender yang fleksibel.\n\nTampilan baru ini menggunakan format database baru.\nUntuk menggunakannya, Anda dapat memigrasikan database yang ada ke format baru atau mulai baru",
         "show-app": "Tampilkan Aplikasi",
         "something-went-wrong": "Suatu hal ada yang salah :(",
         "toggle-dev-tools": "Beralih ke alat pengembang",
@@ -125,7 +117,7 @@
     "$Notification": {
         "punch-reminder": "Jangan lupa untuk rekam!",
         "time-to-leave": "Hai. Saatnya kamu berangkat.",
-        "dismiss-for-today": "Dismiss for today"
+        "dismiss-for-today": "Matikan untuk hari ini"
     },
     "$Preferences": {
         "allowRecurringNotifications": "Izinkan pemberitahuan berulang",
@@ -141,8 +133,8 @@
         "hideNonWorkingDay": "Sembunyikan hari Bukan-kerja (Tampilan Bulan)",
         "hours-per-day": "HH:mm",
         "hoursPerDay": "Jam per-hari",
-        "enablePrefillBreakTime": "Enable prefilling of break time",
-        "breakTimeInterval": "Break time interval",
+        "enablePrefillBreakTime": "Aktifkan pengisian awal waktu istirahat",
+        "breakTimeInterval": "Interval waktu istirahat",
         "language": "Bahasa",
         "light": "Terang",
         "minimizeToTray": "Tombol Minimalkan harus meminimalkan tray",
@@ -201,7 +193,6 @@
         "source-selected-holidays": "Sumber memilih hari libur",
         "start-date": "Tanggal mulai",
         "state": "Negara:",
-        "time-to-leave": "Time to Leave",
         "title": "Time to Leave - Atur hari pengecualian",
         "to": "Sampai",
         "waive": "Pengecualian",
@@ -210,5 +201,8 @@
         "waiver-reason": "Alasan pengecualian",
         "year": "Tahun",
         "yes": "Ya"
+    },
+    "$Generic": {
+        "hours-on-invalid": "this.setCustomValidity(\"Harap masukkan waktu dalam format 24 jam yang valid dari pukul 00:00 hingga 23:59\")"
     }
 }

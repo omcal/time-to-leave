@@ -14,12 +14,23 @@ const languages = {
     'nl': 'Nederlands',
     'pl': 'Polski',
     'pt-BR': 'Português - Brasil',
+    'ru-RU': 'Русский',
     'dev' : 'Português - Minerês',
     'th-TH': 'ไทย',
     'zh-TW': '繁體中文',
     'ta': 'தமிழ்',
-    'tr-TR':'Türkçe'
+    'tr-TR':'Türkçe',
+    'bn':'বাংলা'
 };
+
+/**
+* Get supported language map
+* @return {Map<String,String>}
+*/
+function getLanguageMap()
+{
+    return languages;
+}
 
 /**
 * Get supported language codes
@@ -40,9 +51,13 @@ function getLanguageName(code)
     return languages[code];
 }
 
-module.exports = {
-    fallbackLng: 'en',
-    namespace: 'translation',
+const fallbackLng = 'es';
+const namespace = 'translation';
+
+export {
+    fallbackLng,
+    namespace,
+    getLanguageMap,
     getLanguagesCodes,
     getLanguageName
 };

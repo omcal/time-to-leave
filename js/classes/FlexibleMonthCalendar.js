@@ -1,31 +1,31 @@
 'use strict';
 
-const {
+import {
     isNegative,
     multiplyTime,
     subtractTime,
     sumTime,
     validateTime
-} = require('../time-math.js');
-const { getMonthLength } = require('../date-aux.js');
-const { generateKey } = require('../date-db-formatter.js');
-const {
+} from '../time-math.js';
+import { getMonthLength } from '../date-aux.js';
+import { generateKey } from '../date-db-formatter.js';
+import {
     formatDayId,
     displayWaiverWindow
-} = require('../workday-waiver-aux.js');
-const { showDialog } = require('../window-aux.js');
-const { getDayAbbr } = require('../date-to-string-util.js');
-const { BaseCalendar } = require('./BaseCalendar.js');
-const i18n = require('../../src/configs/i18next.config.js');
+} from '../workday-waiver-aux.js';
+import { showDialog } from '../window-aux.js';
+import { getDayAbbr } from '../date-to-string-util.js';
+import { BaseCalendar } from './BaseCalendar.js';
 
 class FlexibleMonthCalendar extends BaseCalendar
 {
     /**
     * @param {Object.<string, any>} preferences
+    * @param {Object.<string, string>} languageData
     */
-    constructor(preferences)
+    constructor(preferences, languageData)
     {
-        super(preferences);
+        super(preferences, languageData);
     }
 
     /**
@@ -49,7 +49,7 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _getTargetDayForAllTimeBalance()
     {
-        let targetYear = this._getCalendarYear(),
+        const targetYear = this._getCalendarYear(),
             targetMonth = this._getCalendarMonth(),
             // If we are not displaying the current month we need to compute the balance including the
             // last day of the month. To do so we move to the first day of the following month
@@ -69,7 +69,7 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _generateTemplate()
     {
-        let body = this._getBody();
+        const body = this._getBody();
         $('#calendar').html(body);
         $('html').attr('data-view', 'flexible');
     }
@@ -79,8 +79,8 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _getBody()
     {
-        let html = this.constructor._getPageHeader();
-        html += this.constructor._getTableHeaderCode();
+        let html = this._getPageHeader();
+        html += this._getTableHeaderCode();
         html += '<div id="calendar-table-body">';
         html += '</div>';
 
@@ -90,15 +90,16 @@ class FlexibleMonthCalendar extends BaseCalendar
     /*
      * Returns the header of the page, with the image, name and a message.
      */
-    static _getPageHeader()
+    _getPageHeader()
     {
-        let switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${i18n.t('$BaseCalendar.switch-view')}" title="${i18n.t('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
-        let todayBut = `<input id="current-month" type="image" src="assets/calendar.svg" alt="${i18n.t('$FlexibleMonthCalendar.current-month')}" title="${i18n.t('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
-        let leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
-        let rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${i18n.t('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
+        const switchView = `<input id="switch-view" type="image" src="assets/switch.svg" alt="${this._getTranslation('$BaseCalendar.switch-view')}" title="${this._getTranslation('$BaseCalendar.switch-view')}" height="24" width="24"></input>`;
+        const todayBut = `<input id="current-month" type="image" src="assets/calendar.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" title="${this._getTranslation('$FlexibleMonthCalendar.current-month')}" height="24" width="24"></input>`;
+        const leftBut = `<input id="prev-month" type="image" src="assets/left-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.previous-month')}" height="24" width="24"></input>`;
+        const rightBut = `<input id="next-month" type="image" src="assets/right-arrow.svg" alt="${this._getTranslation('$FlexibleMonthCalendar.next-month')}" height="24" width="24"></input>`;
+        const title = 'Time to Leave';
         return '<div class="title-header">'+
                     '<div class="title-header title-header-img"><img src="assets/timer.svg" height="64" width="64"></div>' +
-                    `<div class="title-header title-header-text">${i18n.t('$BaseCalendar.time-to-leave')}</div>` +
+                    `<div class="title-header title-header-text">${title}</div>` +
                     '<div class="title-header title-header-msg"></div>' +
                '</div>' +
                 '<table class="table-header"><tr>' +
@@ -113,28 +114,28 @@ class FlexibleMonthCalendar extends BaseCalendar
     /*
      * Returns the code of the header of the calendar table
      */
-    static _getTableHeaderCode()
+    _getTableHeaderCode()
     {
         return '<div class="calendar-table-header">' +
-                    `<div class="header-day">${i18n.t('$FlexibleMonthCalendar.day')}</div>` +
-                    `<div class="header-day-total">${i18n.t('$FlexibleMonthCalendar.total')}</div>` +
+                    `<div class="header-day">${this._getTranslation('$FlexibleMonthCalendar.day')}</div>` +
+                    `<div class="header-day-total">${this._getTranslation('$FlexibleMonthCalendar.total')}</div>` +
                 '</div>\n';
     }
 
     /*
      * Returns the summary field HTML code.
      */
-    static _getSummaryRowCode()
+    _getSummaryRowCode()
     {
-        let leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
+        const leaveByCode = '<input type="text" id="leave-by" size="5" disabled>';
         return  '<div class="summary" id="summary-unfinished-day">' +
-                    `<div class="leave-by-text" colspan="7">${i18n.t('$FlexibleMonthCalendar.leave-by')}</div>` +
+                    `<div class="leave-by-text" colspan="7">${this._getTranslation('$FlexibleMonthCalendar.leave-by')}</div>` +
                     '<div class="leave-by-time">' +
                         leaveByCode +
                     '</div>' +
                 '</div>' +
                 '<div class="summary hidden" id="summary-finished-day">' +
-                    `<div class="leave-by-text" colspan="7">${i18n.t('$BaseCalendar.day-done-balance')}</div>` +
+                    `<div class="leave-by-text" colspan="7">${this._getTranslation('$BaseCalendar.day-done-balance')}</div>` +
                     '<div class="leave-by-time">' +
                         '<div id="leave-day-balance"></div>' +
                     '</div>' +
@@ -144,17 +145,17 @@ class FlexibleMonthCalendar extends BaseCalendar
     /*
      * Returns the HTML code for the row with working days, month total and balance.
      */
-    static _getBalanceRowCode()
+    _getBalanceRowCode()
     {
         return '<div class="month-total-row">' +
-                    `<div class="month-total-text" title="${i18n.t('$FlexibleMonthCalendar.last-day-balance')}">${i18n.t('$FlexibleMonthCalendar.on')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.last-day-balance')}"><span id="month-day-input"></span></div>` +
-                    `<div class="month-total-text" title="${i18n.t('$FlexibleMonthCalendar.working-days-title')}">${i18n.t('$FlexibleMonthCalendar.working-days')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$FlexibleMonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
-                    `<div class="month-total-text" title="${i18n.t('$BaseCalendar.month-balance-title')}">${i18n.t('$BaseCalendar.month-balance')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
-                    `<div class="month-total-text" title="${i18n.t('$BaseCalendar.overall-balance-title')}">${i18n.t('$BaseCalendar.overall-balance')}</div>` +
-                    `<div class="month-total-time" title="${i18n.t('$BaseCalendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$FlexibleMonthCalendar.last-day-balance')}">${this._getTranslation('$FlexibleMonthCalendar.on')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$FlexibleMonthCalendar.last-day-balance')}"><span id="month-day-input"></span></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$FlexibleMonthCalendar.working-days-title')}">${this._getTranslation('$FlexibleMonthCalendar.working-days')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$FlexibleMonthCalendar.working-days-title')}"><span id="month-working-days"></span></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.month-balance-title')}">${this._getTranslation('$BaseCalendar.month-balance')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.month-balance-title')}"><input type="text" id="month-balance"     size="8" disabled></div>` +
+                    `<div class="month-total-text" title="${this._getTranslation('$BaseCalendar.overall-balance-title')}">${this._getTranslation('$BaseCalendar.overall-balance')}</div>` +
+                    `<div class="month-total-time" title="${this._getTranslation('$BaseCalendar.overall-balance-title')}"><input type="text" id="overall-balance" size="8" placeholder="..." disabled></div>` +
                 '</div>';
     }
 
@@ -173,15 +174,15 @@ class FlexibleMonthCalendar extends BaseCalendar
 
     _getInputsRowCode(year, month, day)
     {
-        let currentDay = new Date(year, month, day),
+        const currentDay = new Date(year, month, day),
             weekDay = currentDay.getDay();
-        let today = new Date(),
+        const today = new Date(),
             isToday = (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year),
             dateKey = generateKey(year, month, day);
 
         if (!this._showDay(year, month, day))
         {
-            return '<div><div class="weekday">' + getDayAbbr(weekDay) + '</div>' +
+            return '<div><div class="weekday">' + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                     '<div class="day">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                     '</div>' +
@@ -189,13 +190,13 @@ class FlexibleMonthCalendar extends BaseCalendar
                     '</div></div>\n';
         }
 
-        let waivedInfo = this._getWaiverStore(year, month, day);
+        const waivedInfo = this._getWaiverStore(year, month, day);
         if (waivedInfo !== undefined)
         {
-            let summaryStr = `<b>${i18n.t('$FlexibleMonthCalendar.waived-day')}: </b>` + waivedInfo['reason'];
-            let waivedLineHtmlCode =
+            const summaryStr = `<b>${this._getTranslation('$FlexibleMonthCalendar.waived-day')}: </b>` + waivedInfo['reason'];
+            const waivedLineHtmlCode =
                 '<div class="row-waiver" id="' + dateKey + '">' +
-                    '<div class="weekday">' + getDayAbbr(weekDay) + '</div>' +
+                    '<div class="weekday">' + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                     '<div class="day">' +
                         '<span class="day-number"> ' + day + ' </span>' +
                     '</div>' +
@@ -209,7 +210,7 @@ class FlexibleMonthCalendar extends BaseCalendar
 
         let htmlCode =
                 '<div>' +
-                `<div class="weekday waiver-trigger" title="${i18n.t('$FlexibleMonthCalendar.add-waiver-day')}">` + getDayAbbr(weekDay) + '</div>' +
+                `<div class="weekday waiver-trigger" title="${this._getTranslation('$FlexibleMonthCalendar.add-waiver-day')}">` + getDayAbbr(this._languageData.data, weekDay) + '</div>' +
                 '<div class="day">' +
                     '<span class="day-number"> ' + day + ' </span>' +
                     '<img src="assets/waiver.svg" height="15" class="waiver-img">' +
@@ -231,10 +232,19 @@ class FlexibleMonthCalendar extends BaseCalendar
 
         if (isToday)
         {
-            htmlCode += this.constructor._getSummaryRowCode();
+            htmlCode += this._getSummaryRowCode();
         }
 
         return htmlCode;
+    }
+
+    /**
+     * Updates TableHeader(header-day, header-day-total) when language setting changed.
+     */
+    _updateTableHeader()
+    {
+        $('.header-day').text(this._getTranslation('$FlexibleMonthCalendar.day'));
+        $('.header-day-total').text(this._getTranslation('$FlexibleMonthCalendar.total'));
     }
 
     /**
@@ -247,7 +257,8 @@ class FlexibleMonthCalendar extends BaseCalendar
         const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         const balanceRowPosition = this._getBalanceRowPosition();
 
-        for (let day = 1; day <= monthLength; ++day)
+        let day;
+        for (day = 1; day <= monthLength; ++day)
         {
             if (!this._showDay(this._getCalendarYear(), this._getCalendarMonth(), day) && this._getHideNonWorkingDays())
             {
@@ -255,11 +266,13 @@ class FlexibleMonthCalendar extends BaseCalendar
             }
 
             html += this._getInputsRowCode(this._getCalendarYear(), this._getCalendarMonth(), day);
-            if (day === balanceRowPosition)
-            {
-                html += this.constructor._getBalanceRowCode();
-            }
         }
+
+        if (day >= balanceRowPosition)
+        {
+            html += this._getBalanceRowCode();
+        }
+
         return html;
     }
 
@@ -358,7 +371,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         function addEntries(element)
         {
             const dateKey = $(element).attr('id');
-            let moreThree =
+            const moreThree =
                 calendar.constructor._getRowCode(dateKey, true /*isInterval*/) +
                 calendar.constructor._getRowCode(dateKey) +
                 calendar.constructor._getRowCode(dateKey);
@@ -395,10 +408,10 @@ class FlexibleMonthCalendar extends BaseCalendar
             {
                 const dateKey = $(element).attr('id');
                 const removeEntriesDialogOptions = {
-                    title: `${i18n.t('$FlexibleMonthCalendar.remove-entry')}`,
-                    message: `${i18n.t('$FlexibleMonthCalendar.entry-removal-confirmation')} ${dateKey}?`,
+                    title: `${this._getTranslation('$FlexibleMonthCalendar.remove-entry')}`,
+                    message: `${this._getTranslation('$FlexibleMonthCalendar.entry-removal-confirmation')} ${dateKey}?`,
                     type: 'info',
-                    buttons: [i18n.t('$FlexibleMonthCalendar.yes'), i18n.t('$FlexibleMonthCalendar.no')]
+                    buttons: [this._getTranslation('$FlexibleMonthCalendar.yes'), this._getTranslation('$FlexibleMonthCalendar.no')]
                 };
                 const getInputs = $(element).find('input');
                 const len = getInputs.length;
@@ -487,16 +500,16 @@ class FlexibleMonthCalendar extends BaseCalendar
     */
     _updateBalance()
     {
-        let now = new Date(),
-            monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth()),
-            workingDaysToCompute = 0,
-            monthTotalWorked = '00:00';
+        const now = new Date();
+        const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
+        let workingDaysToCompute = 0;
+        let monthTotalWorked = '00:00';
         let countDays = false;
         let isNextDay = false;
 
         for (let day = 1; day <= monthLength; ++day)
         {
-            let isToday = (now.getDate() === day && now.getMonth() === this._getCalendarMonth() && now.getFullYear() === this._getCalendarYear());
+            const isToday = (now.getDate() === day && now.getMonth() === this._getCalendarMonth() && now.getFullYear() === this._getCalendarYear());
             // balance should consider preferences and count or not today
             if (isToday && !this._getCountToday() || isNextDay && this._getCountToday())
             {
@@ -520,9 +533,9 @@ class FlexibleMonthCalendar extends BaseCalendar
                 workingDaysToCompute += 1;
             }
         }
-        let monthTotalToWork = multiplyTime(this._getHoursPerDay(), workingDaysToCompute * -1);
-        let balance = sumTime(monthTotalToWork, monthTotalWorked);
-        let balanceElement = $('#month-balance');
+        const monthTotalToWork = multiplyTime(this._getHoursPerDay(), workingDaysToCompute * -1);
+        const balance = sumTime(monthTotalToWork, monthTotalWorked);
+        const balanceElement = $('#month-balance');
         if (balanceElement)
         {
             balanceElement.val(balance);
@@ -537,11 +550,11 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _updateBasedOnDB()
     {
-        let monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
+        const monthLength = getMonthLength(this._getCalendarYear(), this._getCalendarMonth());
         let monthTotal = '00:00';
         let workingDays = 0;
         let stopCountingMonthStats = false;
-        let lastDateToCount = new Date(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate());
+        const lastDateToCount = new Date(this._getCalendarYear(), this._getCalendarMonth(), this._getCalendarDate());
         if (this._getCountToday())
         {
             lastDateToCount.setDate(lastDateToCount.getDate() + 1);
@@ -556,10 +569,10 @@ class FlexibleMonthCalendar extends BaseCalendar
             let dayTotal = null;
             const dateKey = generateKey(this._getCalendarYear(), this._getCalendarMonth(), day);
 
-            let waivedInfo = this._getWaiverStore(this._getCalendarYear(), this._getCalendarMonth(), day);
+            const waivedInfo = this._getWaiverStore(this._getCalendarYear(), this._getCalendarMonth(), day);
             if (waivedInfo !== undefined)
             {
-                let waivedDayTotal = waivedInfo['hours'];
+                const waivedDayTotal = waivedInfo['hours'];
                 $('#' + dateKey + ' .day-total').html(waivedDayTotal);
                 dayTotal = waivedDayTotal;
             }
@@ -581,12 +594,12 @@ class FlexibleMonthCalendar extends BaseCalendar
                 monthTotal = sumTime(monthTotal, dayTotal);
             }
         }
-        let monthDayInput = $('#month-day-input');
+        const monthDayInput = $('#month-day-input');
         if (monthDayInput)
         {
             monthDayInput.html(this._getBalanceRowPosition());
         }
-        let monthWorkingDays = $('#month-working-days');
+        const monthWorkingDays = $('#month-working-days');
         if (monthWorkingDays)
         {
             monthWorkingDays.html(workingDays);
@@ -670,7 +683,7 @@ class FlexibleMonthCalendar extends BaseCalendar
         $('#' + dateKey + ' .interval span').html('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 
         const inputs = $('#' + dateKey + ' .ti input[type=\'time\']');
-        let newValues = [];
+        const newValues = [];
         for (const element of inputs)
         {
             newValues.push(element.value);
@@ -764,8 +777,8 @@ class FlexibleMonthCalendar extends BaseCalendar
      */
     _hasInputError(key)
     {
-        let inputs = $('#' + key + ' input[type=\'time\']');
-        let newValues = [];
+        const inputs = $('#' + key + ' input[type=\'time\']');
+        const newValues = [];
         for (const element of inputs)
         {
             newValues.push(element.value);
@@ -787,6 +800,6 @@ class FlexibleMonthCalendar extends BaseCalendar
     }
 }
 
-module.exports = {
+export {
     FlexibleMonthCalendar
 };

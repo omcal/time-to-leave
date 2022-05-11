@@ -1,15 +1,25 @@
 'use strict';
 
-const electron = require('electron');
-const path = require('path');
-const fs = require('fs');
-const { validateTime } = require('./time-math.js');
-const { isValidTheme } = require('./themes.js');
-const i18n = require('../src/configs/i18next.config');
+const { ipcRenderer } = require('electron');
+
+import { validateTime } from './time-math.js';
+import { isValidTheme } from '../renderer/themes.js';
+import { getLanguagesCodes } from '../src/configs/app.config.js';
+
+// Lazy loaded modules
+let fs = null;
+function getFs()
+{
+    if (fs === null)
+    {
+        fs = require('fs');
+    }
+    return fs;
+}
 
 function isValidLocale(locale)
 {
-    return i18n.languages.includes(locale);
+    return getLanguagesCodes().indexOf(locale) !== -1;
 }
 
 const defaultPreferences = {
@@ -71,18 +81,32 @@ const isNotificationInterval = (val) => !Number.isNaN(Number(val)) && isNotBoole
  */
 function getPreferencesFilePath()
 {
-    let userDataPath = (electron.app || electron.remote.app).getPath('userData');
+    const path = require('path');
+    const electron = require('electron');
+    const userDataPath = (electron.app || electron.remote.app).getPath('userData');
     return path.join(userDataPath, 'preferences.json');
+}
+
+function getPreferencesFilePathPromise()
+{
+    return new Promise((resolve) =>
+    {
+        ipcRenderer.invoke('USER_DATA_PATH').then(userDataPath =>
+        {
+            const path = require('path');
+            resolve(path.join(userDataPath, 'preferences.json'));
+        });
+    });
 }
 
 /*
  * Saves preferences to file, returns an error on failure.
  */
-function savePreferences(preferencesOptions)
+function savePreferences(preferencesOptions, filePath = getPreferencesFilePath())
 {
     try
     {
-        fs.writeFileSync(getPreferencesFilePath(), JSON.stringify(preferencesOptions));
+        getFs().writeFileSync(filePath, JSON.stringify(preferencesOptions));
     }
     catch (err)
     {
@@ -95,12 +119,12 @@ function savePreferences(preferencesOptions)
  * Loads preference from file.
  * @return {Object}
  */
-function readPreferences()
+function readPreferences(filePath = getPreferencesFilePath())
 {
     let preferences;
     try
     {
-        preferences = JSON.parse(fs.readFileSync(getPreferencesFilePath()));
+        preferences = JSON.parse(getFs().readFileSync(filePath));
     }
     catch (err)
     {
@@ -111,7 +135,7 @@ function readPreferences()
 
 function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
 {
-    let derivedPreferences = {};
+    const derivedPreferences = {};
     Object.keys(defaultPreferences).forEach(function(key)
     {
         derivedPreferences[key] = (typeof loadedPreferences[key] !== 'undefined') ? loadedPreferences[key] : defaultPreferences[key];
@@ -124,19 +148,19 @@ function getDerivedPrefsFromLoadedPrefs(loadedPreferences)
  * initializes users preferences if it is not already exists
  * or any keys of existing preferences is invalid
  */
-function initPreferencesFileIfNotExistsOrInvalid()
+function initPreferencesFileIfNotExistsOrInvalid(filePath = getPreferencesFilePath())
 {
-    if (!fs.existsSync(getPreferencesFilePath()))
+    if (!getFs().existsSync(filePath))
     {
         savePreferences(defaultPreferences);
         return;
     }
 
-    let shouldSaveDerivedPrefs = false,
-        loadedPrefs = readPreferences(),
-        derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs),
-        loadedPref = Object.keys(loadedPrefs).sort(),
-        derivedPrefsKeys = Object.keys(derivedPrefs).sort();
+    let shouldSaveDerivedPrefs = false;
+    const loadedPrefs = readPreferences(filePath);
+    const derivedPrefs = getDerivedPrefsFromLoadedPrefs(loadedPrefs);
+    const loadedPref = Object.keys(loadedPrefs).sort();
+    const derivedPrefsKeys = Object.keys(derivedPrefs).sort();
 
     // Validate keys
     if (JSON.stringify(loadedPref) !== JSON.stringify(derivedPrefsKeys))
@@ -147,7 +171,7 @@ function initPreferencesFileIfNotExistsOrInvalid()
     // Validate the values
     for (const key of derivedPrefsKeys)
     {
-        let value = derivedPrefs[key];
+        const value = derivedPrefs[key];
 
         if (isNotBoolean(value) && booleanInputs.includes(key))
         {
@@ -175,7 +199,7 @@ function initPreferencesFileIfNotExistsOrInvalid()
 
     if (shouldSaveDerivedPrefs)
     {
-        savePreferences(derivedPrefs);
+        savePreferences(derivedPrefs, filePath);
     }
 
 }
@@ -190,12 +214,24 @@ function getLoadedOrDerivedUserPreferences()
     return readPreferences();
 }
 
+function getUserPreferencesPromise()
+{
+    return new Promise((resolve) =>
+    {
+        getPreferencesFilePathPromise().then((filePath) =>
+        {
+            initPreferencesFileIfNotExistsOrInvalid(filePath);
+            resolve(readPreferences(filePath));
+        });
+    });
+}
+
 /*
  * Returns true if the notification is enabled in preferences.
  */
 function notificationIsEnabled()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['notification'];
 }
 
@@ -226,13 +262,13 @@ function showWeekDay(weekDay, preferences = undefined)
  */
 function showDay(year, month, day, preferences = undefined)
 {
-    let currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
+    const currentDay = new Date(year, month, day), weekDay = currentDay.getDay();
     return showWeekDay(weekDay, preferences);
 }
 
 function switchCalendarView()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     if (preferences['view'] === 'month')
     {
         preferences['view'] = 'day';
@@ -248,7 +284,7 @@ function switchCalendarView()
 
 function getDefaultWidthHeight()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     if (preferences['view'] === 'month')
     {
         return { width: 1010, height: 800 };
@@ -265,7 +301,7 @@ function getDefaultWidthHeight()
  */
 function getUserLanguage()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['language'];
 }
 
@@ -274,7 +310,7 @@ function getUserLanguage()
  */
 function getNotificationsInterval()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['notifications-interval'];
 }
 
@@ -283,14 +319,23 @@ function getNotificationsInterval()
  */
 function repetitionIsEnabled()
 {
-    let preferences = getLoadedOrDerivedUserPreferences();
+    const preferences = getLoadedOrDerivedUserPreferences();
     return preferences['repetition'];
 }
 
-module.exports = {
+/*
+ * Resets the preferences to their default value.
+ */
+function resetPreferences()
+{
+    savePreferences(defaultPreferences);
+}
+
+export {
     defaultPreferences,
     getDefaultWidthHeight,
-    getUserPreferences: getLoadedOrDerivedUserPreferences,
+    getLoadedOrDerivedUserPreferences as getUserPreferences,
+    getUserPreferencesPromise,
     getUserLanguage,
     getNotificationsInterval,
     getPreferencesFilePath,
@@ -300,5 +345,6 @@ module.exports = {
     isNotBoolean,
     isNotificationInterval,
     notificationIsEnabled,
-    repetitionIsEnabled
+    repetitionIsEnabled,
+    resetPreferences
 };
